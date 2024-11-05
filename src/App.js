@@ -1,4 +1,5 @@
 import React from "react";
+import ResetPassword from "./pages/ResetPassword";
 import {
   BrowserRouter as Router,
   Routes,
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
     </Router>
   );

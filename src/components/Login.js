@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import {
   TextField,
   Button,
@@ -66,6 +67,7 @@ const ImageContainer = styled.div`
   background-image: url("https://s3-alpha-sig.figma.com/img/f785/95bc/d327319daadc21099f439d4f6f86f7e0?Expires=1731888000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bIC9h-5mJ8O-Uv04QBJd2xRje1Rd~qeAQZ2ZFKu8vWc3l28QkRcUudWrm~2ABkHGpqJ8oSm9DvPJsyqO3Z76t3Okkg3XIAZ4JPAYmPiRH2niXhwnJkU~uCvEF~phDjbHvXKm-aiuFhrVaQybJSg7usCDlmVES4NSw6M4GiUY~YKlrriu4D4nJghiujKHfDRmwRhZGG97TLMVevtDmcBtX-yIZj9j-SxHYwkro-9J3Zde315YNh2Qq~RoGXDHKszyfNu6sSERVDx9j78YwyHHOgfa5ZiUdjhZFKKtJu7~gb8XWLb3gLENI8QDNva2wXGIf8uC~7-kfL2HxZT7o2ACQg__");
   background-size: cover;
   background-position: center;
+  border-radius: 10px;
   position: relative;
 `;
 
@@ -131,12 +133,14 @@ const NormalText = styled(Typography)`
 const LoginwithGoogleText = styled.div`
   font-weight: 600 !important;
   font-family: "Roboto", sans-serif;
+  padding: 0px 0px;
+  margin: 0px 0px;
 `;
 const StyledButton = styled(Button)`
   margin-top: 20px !important;
   background: rgba(16, 137, 143, 1) !important;
   border-radius: 8px !important;
-  height: 45px;
+  height: 7vh;
   font-size: 16px;
 `;
 
@@ -145,12 +149,14 @@ const GoogleButton = styled(Button)`
   border: 1px solid #d9d9d9 !important;
   color: #555 !important;
   border-radius: 8px !important;
-  height: 45px;
+  height: 7vh;
   font-size: 16px;
 `;
 
 const StyledLink = styled(Link)`
   color: inherit;
+
+  cursor: pointer;
   color: #000 !important;
   text-decoration: none;
   font-size: 0.275rem;
@@ -196,11 +202,47 @@ const LabelLinkContainer = styled.div`
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((prev) => !prev);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({
+    general: "",
+    username: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+  const handleForgotPassword = () => {
+    if (!username) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        username: "Please enter your Email to reset the password",
+      }));
+    } else {
+      navigate("/reset-password");
+    }
+  };
+  const handleSignup = () => {
+    navigate("/signup");
+  };
+  const handleLogin = () => {
+    const newErrors = {};
+    if (!username && !password) {
+      newErrors.general = "Username/Email and Password are required";
+    } else {
+      // Individual field validation
+      if (!username) newErrors.username = "Username/Email is required";
+      if (!password) newErrors.password = "Password is required";
+    }
+    setErrors(newErrors);
+
+    if (!newErrors.general && !newErrors.username && !newErrors.password) {
+      console.log("Logging in...");
+    }
+  };
   return (
     <MainContainer>
       <ContentContainer>
         <FormOuterContainer>
-          <SignUpPageLink>
+          <SignUpPageLink onClick={handleSignup}>
             <p>Signup Here</p>
           </SignUpPageLink>
           <FormContainer>
@@ -213,13 +255,30 @@ const Login = () => {
             <FormTitle variant="h4">Login</FormTitle>
             <NormalText>Let's get things done smarter and faster.</NormalText>
 
-            {/* Username Field */}
+            {errors.general && (
+              <Typography
+                color="error"
+                variant="body2"
+                align="center"
+                gutterBottom
+              >
+                {errors.general}
+              </Typography>
+            )}
             <FieldContainer>
               <Typography variant="body2">
-                <UsernameFieldName>Username</UsernameFieldName>
+                <UsernameFieldName>Username or Email</UsernameFieldName>
               </Typography>
 
-              <TextField variant="outlined" fullWidth margin="normal" />
+              <TextField
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                error={!!errors.username}
+                helperText={errors.username}
+              />
             </FieldContainer>
 
             {/* Password Field with "Forgot your password?" */}
@@ -228,7 +287,7 @@ const Login = () => {
                 <Typography variant="body2">
                   <PasswordFieldName>Password</PasswordFieldName>
                 </Typography>
-                <StyledLink href="#">
+                <StyledLink onClick={handleForgotPassword}>
                   <ForgotPasswordLinkText>
                     Forgot your password?
                   </ForgotPasswordLinkText>
@@ -238,6 +297,10 @@ const Login = () => {
                 variant="outlined"
                 fullWidth
                 type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                error={!!errors.password}
+                helperText={errors.password}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -250,7 +313,7 @@ const Login = () => {
               />
             </FieldContainer>
 
-            <StyledButton variant="contained" fullWidth>
+            <StyledButton variant="contained" fullWidth onClick={handleLogin}>
               Login
             </StyledButton>
 
