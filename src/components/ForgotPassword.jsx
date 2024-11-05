@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   TextField,
   Button,
@@ -132,15 +132,6 @@ const DividerText = styled.div`
     margin-left: 10px;
   }
 `;
-const UsernameFieldName = styled.div`
-  font-family: "Roboto", sans-serif;
-  font-size: 16px !important;
-  font-weight: 400 !important;
-  margin-bottom: -7px;
-  text-align: left;
-
-  color: black;
-`;
 const ResendLink = styled.span`
   font-weight: bold;
   cursor: pointer;
@@ -163,6 +154,7 @@ const ResetPassword = () => {
   const loginEmail = location.state?.email || ""; // Email passed from the login page
   const [combinedError, setCombinedError] = useState("");
   const handleClickShowPassword = () => setShowPassword((prev) => !prev);
+  const navigate = useNavigate();
   const handleClickShowConfirmPassword = () =>
     setShowConfirmPassword((prev) => !prev);
 
@@ -213,7 +205,7 @@ const ResetPassword = () => {
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      return; // Stop further execution if there are individual field errors
+      return;
     }
 
     if (newPassword !== confirmPassword) {
@@ -222,7 +214,9 @@ const ResetPassword = () => {
     } else {
       setErrors({});
       window.alert("Success! Your password has been reset.");
-      // Handle further actions, like redirecting to login page or showing success message
+      setNewPassword("");
+      setConfirmPassword("");
+      navigate("/login");
     }
   };
   return (
