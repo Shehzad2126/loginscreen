@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import {
-  TextField,
-  Button,
-  Typography,
-  Link,
-  InputAdornment,
-  IconButton,
-} from "@mui/material";
+import { TextField, Button, Typography } from "@mui/material";
 import GoogleIcon from "./GoogleIcon";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 const MainContainer = styled.div`
   display: flex;
   align-items: center;
@@ -70,6 +63,13 @@ const ImageContainer = styled.div`
   border-radius: 10px;
   position: relative;
 `;
+const ResendLink = styled.span`
+  font-weight: bold;
+  cursor: pointer;
+  color: #000;
+  text-decoration: underline;
+  text-decoration-color: teal; /* Change this color as needed */
+`;
 
 const OverlayImage = styled.img`
   position: absolute;
@@ -109,19 +109,7 @@ const UsernameFieldName = styled.div`
   margin-bottom: -7px;
   color: black;
 `;
-const ForgotPasswordLinkText = styled.div`
-  font-family: "Roboto", sans-serif;
-  font-size: 14px !important;
-  font-weight: 400 !important;
-  text-decoration-color: black;
-  color: black;
-`;
-const PasswordFieldName = styled.div`
-  font-family: "Roboto", sans-serif;
-  font-size: 16px !important;
-  font-weight: 400 !important;
-  color: black;
-`;
+
 const NormalText = styled(Typography)`
   font-family: "Roboto", sans-serif;
   font-size: 16px !important;
@@ -153,16 +141,6 @@ const GoogleButton = styled(Button)`
   font-size: 16px;
 `;
 
-const StyledLink = styled(Link)`
-  color: inherit;
-
-  cursor: pointer;
-  color: #000 !important;
-  text-decoration: none;
-  font-size: 0.275rem;
-  textdecorationcolor: "#000" !important;
-`;
-
 const DividerText = styled.div`
   display: flex;
   align-items: center;
@@ -191,52 +169,34 @@ const FieldContainer = styled.div`
   margin-bottom: 16px;
 `;
 
-const LabelLinkContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 4px;
-`;
-
-const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((prev) => !prev);
+const ForgotPassword = () => {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({
-    general: "",
-    username: "",
-    password: "",
-  });
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-  const handleForgotPassword = () => {
+  const location = useLocation();
+  const email = location.state?.email || "";
+  const maskEmail = (email) => {
+    const [localPart, domain] = email.split("@");
+    const maskedLocalPart =
+      localPart.slice(0, -2).replace(/./g, "*") + localPart.slice(-2);
+    return `${maskedLocalPart}@${domain}`;
+  };
+  const handleContinue = () => {
     if (!username) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        username: "Please enter your Email to reset the password",
-      }));
+      setErrors({ username: "Enter the OTO" });
     } else {
-      navigate("/reset-password", { state: { email: username } });
+      setErrors({});
+      console.log("OTP Verified:", username);
     }
+  };
+  const handleResend = () => {
+    alert("Resend code triggered");
+    // Add your resend code logic here
   };
   const handleSignup = () => {
     navigate("/signup");
   };
-  const handleLogin = () => {
-    const newErrors = {};
-    if (!username && !password) {
-      newErrors.general = "Username/Email and Password are required";
-    } else {
-      if (!username) newErrors.username = "Username/Email is required";
-      if (!password) newErrors.password = "Password is required";
-    }
-    setErrors(newErrors);
 
-    if (!newErrors.general && !newErrors.username && !newErrors.password) {
-      console.log("Logging in...");
-    }
-  };
   return (
     <MainContainer>
       <ContentContainer>
@@ -251,22 +211,14 @@ const Login = () => {
                 alt="Logo"
               />
             </Logo>
-            <FormTitle variant="h4">Login</FormTitle>
-            <NormalText>Let's get things done smarter and faster.</NormalText>
+            <FormTitle variant="h4">Verify Your OTP</FormTitle>
+            <NormalText>
+              Enter the OTP that has sent to {maskEmail(email)}
+            </NormalText>
 
-            {errors.general && (
-              <Typography
-                color="error"
-                variant="body2"
-                align="center"
-                gutterBottom
-              >
-                {errors.general}
-              </Typography>
-            )}
             <FieldContainer>
               <Typography variant="body2">
-                <UsernameFieldName>Username or Email</UsernameFieldName>
+                <UsernameFieldName> Code</UsernameFieldName>
               </Typography>
 
               <TextField
@@ -279,41 +231,25 @@ const Login = () => {
                 helperText={errors.username}
               />
             </FieldContainer>
+            <Typography
+              variant="body2"
+              align="center"
+              style={{
+                color: "#888",
+                marginTop: "-10px",
+                marginBottom: "20px",
+              }}
+            >
+              didn’t get the code?{" "}
+              <ResendLink onClick={handleResend}>Click to resend</ResendLink>
+            </Typography>
 
-            {/* Password Field with "Forgot your password?" */}
-            <FieldContainer>
-              <LabelLinkContainer>
-                <Typography variant="body2">
-                  <PasswordFieldName>Password</PasswordFieldName>
-                </Typography>
-                <StyledLink onClick={handleForgotPassword}>
-                  <ForgotPasswordLinkText>
-                    Forgot your password?
-                  </ForgotPasswordLinkText>
-                </StyledLink>
-              </LabelLinkContainer>
-              <TextField
-                variant="outlined"
-                fullWidth
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                error={!!errors.password}
-                helperText={errors.password}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={handleClickShowPassword} edge="end">
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </FieldContainer>
-
-            <StyledButton variant="contained" fullWidth onClick={handleLogin}>
-              Login
+            <StyledButton
+              variant="contained"
+              fullWidth
+              onClick={handleContinue}
+            >
+              Continue
             </StyledButton>
 
             <DividerText>OR</DividerText>
@@ -342,4 +278,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
