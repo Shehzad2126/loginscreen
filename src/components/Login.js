@@ -145,7 +145,14 @@ const ForgotPasswordLinkText = styled.div`
   text-decoration-color: black;
   color: black;
 `;
-
+const ForgotPasswordText = styled.div`
+  font-family: "Roboto", sans-serif;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  text-decoration-color: black;
+  color: black;
+  margin-right: 2px;
+`;
 const PasswordFieldName = styled.div`
   font-family: "Roboto", sans-serif;
   font-size: 14px !important;
@@ -215,6 +222,8 @@ const GoogleButton = styled(Button)`
 const StyledLink = styled(Link)`
   color: inherit;
   cursor: pointer;
+  align-items: center;
+  display: flex;
   color: #000 !important;
   text-decoration: none;
   font-size: 0.275rem;
@@ -412,9 +421,8 @@ const Login = () => {
                   <PasswordFieldName>Password</PasswordFieldName>
                 </Typography>
                 <StyledLink onClick={handleForgotPassword}>
-                  <ForgotPasswordLinkText>
-                    Forgot your password?
-                  </ForgotPasswordLinkText>
+                  <ForgotPasswordText>Forgot your password?</ForgotPasswordText>
+                  <ForgotPasswordLinkText>Click Here</ForgotPasswordLinkText>
                 </StyledLink>
               </LabelLinkContainer>
               <StyledTextField
