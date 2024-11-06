@@ -83,7 +83,6 @@ const ImageContainer = styled.div`
   }
 `;
 
-// Typography components
 const SignUpPageLink = styled.div`
   position: absolute;
   top: 55px;
@@ -336,7 +335,6 @@ const Login = () => {
   const handleSignup = () => {
     navigate("/signup");
   };
-
   const handleLogin = () => {
     const newErrors = {};
     if (!username && !password) {
@@ -349,34 +347,27 @@ const Login = () => {
 
     if (!newErrors.general && !newErrors.username && !newErrors.password) {
       if (username === "shahzad@gmail.com" && password === "1234") {
-        toast.success(
-          <div>
-            Login successful!
-            <button
-              onClick={() => {
-                navigate("/dashboard");
-                toast.dismiss();
-              }}
-              style={{
-                background: "none",
-                border: "none",
-                color: "#007bff",
-                cursor: "pointer",
-                marginLeft: "10px",
-              }}
-            >
-              OK
-            </button>
-          </div>
-        );
+        toast.success("Login successful!", {
+          autoClose: 3000, // Automatically closes after 3 seconds
+          className: "full-width-toast",
+          onClose: () => navigate("/dashboard"), // Navigates to dashboard after toast closes
+        });
       } else {
         setErrors({ general: "Invalid email or password" });
       }
     }
   };
+
   return (
     <MainContainer>
-      <ToastContainer position="top-right" autoClose={8000} hideProgressBar />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        closeOnClick
+        pauseOnHover
+        style={{ width: "100%" }} // Full-screen width
+      />
       <ContentContainer>
         <FormOuterContainer>
           <SignUpPageLink onClick={handleSignup}>

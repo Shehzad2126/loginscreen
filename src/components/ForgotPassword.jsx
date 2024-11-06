@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   TextField as MuiTextField,
@@ -9,7 +12,8 @@ import {
   IconButton,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import GoogleIcon from "./GoogleIcon"; // Assume this is your Google icon component
+import GoogleIcon from "./GoogleIcon";
+
 const MainContainer = styled.div`
   display: flex;
   align-items: center;
@@ -144,6 +148,23 @@ const NormalText = styled(Typography)`
   }
 `;
 
+const OTPContainer = styled.div`
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+  margin-bottom: 16px;
+`;
+
+const OTPInput = styled(MuiTextField)`
+  width: 15%;
+  text-align: center;
+  & .MuiInputBase-input {
+    text-align: center;
+    font-size: 14px;
+    padding: 7px;
+  }
+`;
+
 const StyledTextField = styled(MuiTextField)`
   margin-bottom: 16px;
 
@@ -166,6 +187,7 @@ const StyledButton = styled(Button)`
   border-radius: 8px !important;
   height: 6vh;
   font-size: 16px;
+  width: 100%;
 
   @media (max-width: 960px) {
     height: 5vh;
@@ -184,6 +206,7 @@ const GoogleButton = styled(Button)`
   border-radius: 8px !important;
   height: 6vh;
   font-size: 16px;
+  width: 100%;
 
   @media (max-width: 960px) {
     height: 5vh;
@@ -267,45 +290,52 @@ export {
   DividerText,
   ResendLink,
 };
+
 const ResetPassword = () => {
-  const [screen, setScreen] = useState("verifyEmail");
+  const [screen, setScreen] = useState("verifyOtp");
   const [email, setEmail] = useState("");
-  const [otp, setOtp] = useState("");
+  const [otp, setOtp] = useState(["", "", "", "", ""]);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const location = useLocation();
-  const loginEmail = location.state?.email || ""; // Email passed from the login page
+  const loginEmail = location.state?.email || "";
   const [combinedError, setCombinedError] = useState("");
   const handleClickShowPassword = () => setShowPassword((prev) => !prev);
   const navigate = useNavigate();
   const handleClickShowConfirmPassword = () =>
     setShowConfirmPassword((prev) => !prev);
+  const handleOTPKeyDown = (e, index) => {
+    if (e.key === "Backspace" && !otp[index] && index > 0) {
+      document.getElementById(`otp-input-${index - 1}`).focus();
+    }
+  };
 
-  const handleContinueEmail = () => {
-    if (!email) {
-      setErrors({ email: "Email is required" });
-    } else if (email !== loginEmail) {
-      setErrors({ email: "The email does not match the one entered on login" });
-    } else {
-      setErrors({});
-      setScreen("verifyOtp");
+  const handleOTPChange = (element, index) => {
+    const value = element.value.replace(/[^0-9]/g, "");
+    if (value.length > 1) return;
+
+    const newOtp = [...otp];
+    newOtp[index] = value;
+    setOtp(newOtp);
+
+    if (value && index < otp.length - 1) {
+      document.getElementById(`otp-input-${index + 1}`).focus();
     }
   };
 
   const handleContinueOtp = () => {
     if (!otp) {
       setErrors({ otp: "OTP is required" });
-    } else if (otp !== "1234") {
-      setErrors({ otp: "The OTP does not match " });
+    } else if (otp.join("") !== "12345") {
+      setErrors({ otp: "The OTP does not match" });
     } else {
       setErrors({});
       setScreen("newPassword");
     }
   };
-
   const maskEmail = (email) => {
     const [localPart, domain] = email.split("@");
     const maskedLocalPart =
@@ -339,13 +369,14 @@ const ResetPassword = () => {
 
     if (newPassword !== confirmPassword) {
       setErrors({ confirmPassword: "Passwords do not match" });
-      window.alert("Error: Passwords do not match");
     } else {
       setErrors({});
-      window.alert("Success! Your password has been reset.");
+      toast.success("New Password Set Successfully", {
+        autoClose: 3000,
+        onClose: () => navigate("/login"),
+      });
       setNewPassword("");
       setConfirmPassword("");
-      navigate("/login");
     }
   };
   const handleSignup = () => {
@@ -354,6 +385,14 @@ const ResetPassword = () => {
 
   return (
     <MainContainer>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        closeOnClick
+        pauseOnHover
+        style={{ width: "100%" }}
+      />
       <ContentContainer>
         <FormOuterContainer>
           <SignUpPageLink onClick={handleSignup}>
@@ -366,88 +405,40 @@ const ResetPassword = () => {
                 alt="Logo"
               />
             </Logo>
-            {screen === "verifyEmail" && (
-              <>
-                <FormTitle variant="h4">Verify Your Email</FormTitle>
-                <NormalText>
-                  Enter your email {maskEmail(loginEmail)}
-                </NormalText>
-                <Typography
-                  variant="body2"
-                  style={{
-                    fontFamily: "Roboto, sans-serif",
-                    fontSize: "16px",
-                    fontWeight: "400",
-                    marginBottom: "-15px",
-                    color: "black",
-                    textAlign: "left",
-                    width: "100%",
-                  }}
-                >
-                  Email
-                </Typography>
-                <StyledTextField
-                  variant="outlined"
-                  fullWidth
-                  margin="normal"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  error={!!errors.email}
-                  helperText={errors.email}
-                />
-                <StyledButton
-                  variant="contained"
-                  fullWidth
-                  onClick={handleContinueEmail}
-                >
-                  Continue
-                </StyledButton>
-              </>
-            )}
 
             {screen === "verifyOtp" && (
               <>
-                <FormTitle variant="h4">Verify OTP</FormTitle>
-                <NormalText>Enter the OTP sent to your email</NormalText>
+                <Typography variant="h5">Verify OTP</Typography>
                 <Typography
                   variant="body2"
                   style={{
-                    fontFamily: "Roboto, sans-serif",
-                    fontSize: "16px",
-                    fontWeight: "400",
-                    marginBottom: "-15px",
-                    color: "black",
-                    textAlign: "left",
-                    width: "100%",
+                    marginTop: "15px",
+                    marginBottom: "15px",
+                    textAlign: "center",
                   }}
+                  gutterBottom
                 >
-                  Code
+                  Enter the OTP sent to {maskEmail(loginEmail)}l
                 </Typography>
-                <StyledTextField
-                  variant="outlined"
-                  fullWidth
-                  margin="normal"
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  error={!!errors.otp}
-                  helperText={errors.otp}
-                />
-                <Typography
-                  variant="body2"
-                  align="center"
-                  style={{
-                    color: "#888",
-                    marginTop: "-5px",
-                    marginBottom: "20px",
-                  }}
-                >
-                  didn’t get the code?{" "}
-                  <ResendLink
-                    onClick={() => console.log("Resend code triggered")}
-                  >
-                    Click to resend
-                  </ResendLink>
-                </Typography>
+                <OTPContainer>
+                  {otp.map((digit, index) => (
+                    <OTPInput
+                      key={index}
+                      id={`otp-input-${index}`}
+                      variant="outlined"
+                      value={digit}
+                      onChange={(e) => handleOTPChange(e.target, index)}
+                      onKeyDown={(e) => handleOTPKeyDown(e, index)}
+                      inputProps={{ maxLength: 1 }}
+                      error={!!errors.otp}
+                    />
+                  ))}
+                </OTPContainer>
+                {errors.otp && (
+                  <Typography color="error" variant="body2">
+                    {errors.otp}
+                  </Typography>
+                )}
                 <StyledButton
                   variant="contained"
                   fullWidth
@@ -457,7 +448,6 @@ const ResetPassword = () => {
                 </StyledButton>
               </>
             )}
-
             {screen === "newPassword" && (
               <>
                 <FormTitle variant="h4">Create New Password</FormTitle>
