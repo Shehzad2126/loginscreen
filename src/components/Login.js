@@ -412,8 +412,10 @@ const Login = () => {
                   <PasswordFieldName>Password</PasswordFieldName>
                 </Typography>
                 <StyledLink onClick={handleForgotPassword}>
-                  <ForgotPasswordText>Forgot your password?</ForgotPasswordText>
-                  <ForgotPasswordLinkText>Click Here</ForgotPasswordLinkText>
+                  {/* <ForgotPasswordText></ForgotPasswordText> */}
+                  <ForgotPasswordLinkText>
+                    Forgot your password?
+                  </ForgotPasswordLinkText>
                 </StyledLink>
               </LabelLinkContainer>
               <StyledTextField
