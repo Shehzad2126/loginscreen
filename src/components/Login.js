@@ -21,7 +21,7 @@ const MainContainer = styled.div`
   min-height: 90vh;
 
   @media (max-width: 960px) {
-    padding: 10px;
+    padding: 10px 30px;
   }
 `;
 
