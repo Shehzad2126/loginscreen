@@ -88,7 +88,7 @@ const SignUpPageLink = styled.div`
   top: 55px;
   right: 20px;
   font-weight: bold;
-  font-size: 0.675rem;
+  font-size: 0.795rem;
   text-decoration: underline;
   cursor: pointer;
   @media (max-width: 960px) {
