@@ -209,7 +209,7 @@ const data = [
 // Styled Components
 const ChartContainer = styled.div`
   max-width: 100%;
-  padding: 8px 16px;
+  padding: 0px 10px;
   background-color: white;
   border: 1px solid #e5e7eb;
 `;
@@ -217,7 +217,7 @@ const ChartContainer = styled.div`
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 `;
 
 const Title = styled.h3`
@@ -302,7 +302,7 @@ const ActivityChart = () => (
         </div>
       </Subtitle>
     </Header>
-    <ResponsiveContainer width="100%" height={110}>
+    <ResponsiveContainer width="100%" height={127}>
       <LineChart
         data={data}
         margin={{ top: 0, right: 0, left: -35, bottom: 1 }}
@@ -312,15 +312,16 @@ const ActivityChart = () => (
           dataKey="name"
           tickLine={false}
           axisLine={false}
-          tick={{ fill: "#6B7280" }}
+          tick={{ fontSize: "12px", fill: "#6B7280" }}
         />
         <YAxis
           domain={[10, 30]}
           ticks={[10, 20, 30]}
           tickFormatter={(value) => value / 10}
+          tick={{ fontSize: "12px", fill: "#6B7280" }}
           axisLine={false}
           tickLine={false}
-          tick={{ fill: "#6B7280" }}
+          // tick={{ fill: "#6B7280" }}
         />
         <Tooltip content={<CustomTooltip />} />
         <Line
