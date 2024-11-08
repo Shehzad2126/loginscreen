@@ -171,13 +171,11 @@ import { setActiveTab } from "../../store/tabSlice";
 const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 16%;
   position: fixed;
   justify-content: space-between;
-  height: 95vh; /* Full height */
-  // width: 250px; /* Fixed width */
-  padding: 0.8rem;
+  height: 100vh; /* Full height */
   background-color: #ffffff; /* Background color */
-  // border-right: 1px solid #e2e8f0; /* Light gray border */
 `;
 
 const Nav = styled.nav`
@@ -186,16 +184,16 @@ const Nav = styled.nav`
 
 const TabList = styled.ul`
   display: flex;
-  margin-left: -60px;
   flex-direction: column;
-  gap: 1rem; /* Space between tabs */
+  padding: 0;
+  gap: 0.3rem; /* Space between tabs */
 `;
 
 const TabItem = styled.li`
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.5rem 1rem; /* Padding for clickable area */
+  padding: 0.3rem 1rem; /* Padding for clickable area */
   cursor: pointer;
   background-color: ${({ active }) =>
     active ? "#ffe4e6" : "transparent"}; /* Light pink */
@@ -203,7 +201,7 @@ const TabItem = styled.li`
     active ? "#319795" : "#4a5568"}; /* Teal if active */
   border-left: ${({ active }) =>
     active ? "4px solid #d53f8c" : "none"}; /* Pink line */
-  font-size: 0.875rem; /* Font size for tabs */
+  font-size: 0.7rem; /* Font size for tabs */
   text-align: left; /* Align text to the left */
 
   &:hover {
@@ -212,7 +210,7 @@ const TabItem = styled.li`
 `;
 
 const TabIcon = styled.span`
-  font-size: 1.125rem; /* Adjusted icon size */
+  font-size: 1rem; /* Adjusted icon size */
 `;
 
 const TabText = styled.span`
@@ -223,14 +221,14 @@ const Footer = styled.div`
   margin-top: auto;
   display: flex;
   flex-direction: column;
-  /* Space between footer elements */
+  padding: 15px;
 `;
 
 const IconContainer = styled.div`
   display: flex;
   justify-content: space-around;
-  font-size: 1.25rem; /* Icon size */
-  color: #4a5568; /* Gray 600 */
+  font-size: 1rem;
+  color: #4a5568;
 
   & > svg {
     cursor: pointer;
@@ -245,8 +243,8 @@ const IconContainer = styled.div`
 const UserProfile = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Align to left */
-  padding: 0.5rem 0; /* Vertical padding */
+  justify-content: flex-start;
+  padding: 0.5rem 0;
   gap: 0.5rem;
 `;
 

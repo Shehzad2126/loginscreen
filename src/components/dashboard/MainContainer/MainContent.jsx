@@ -38,12 +38,7 @@ const MainContent = () => {
     }
   };
 
-  return (
-    <ContentContainer>
-      {/* Content rendered based on activeTab */}
-      {renderContent()}
-    </ContentContainer>
-  );
+  return <ContentContainer>{renderContent()}</ContentContainer>;
 };
 
 export default MainContent;

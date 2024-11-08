@@ -304,7 +304,7 @@ const ActivityAndActiveNow = () => {
   return (
     <Container>
       <ChartWrapper>
-        <ActivityChart />
+    <ActivityChart />
       </ChartWrapper>
       <ActiveNowSection>
         <Header>

@@ -6,17 +6,19 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   align-items: center;
-  padding: 0.5rem 0; /* Equivalent to py-2 */
-  margin-left: 0.75rem; /* Equivalent to ml-3 */
+  padding: 0.2rem 0; /* Equivalent to py-2 */
+  // margin-left: 0.75rem; /* Equivalent to ml-3 */
   gap: 0.5rem; /* Equivalent to space-x-2 */
 `;
 
 const SearchWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 1rem 2rem; /* Equivalent to px-1 py-1 */
+  padding: 0.7rem 1rem; /* Equivalent to px-1 py-1 */
   gap: 1rem; /* Equivalent to space-x-4 */
-  background-color: rgba(250, 204, 255, 0.5); /* Light pink background */
+  // background-color: rgba(250, 204, 255, 0.5); /* Light pink background */
+  background: #ffe4e6;
+
   border-radius: 9999px; /* Fully rounded */
 `;
 
@@ -35,9 +37,10 @@ const SearchInput = styled.input`
 const IconWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 1rem 2rem; /* Equivalent to px-4 py-1 */
+  padding: 0.7rem 1rem; /* Equivalent to px-4 py-1 */
   gap: 1rem; /* Equivalent to space-x-4 */
-  background-color: rgba(250, 204, 255, 0.5); /* Light pink background */
+  background: #ffe4e6;
+
   border-radius: 9999px; /* Fully rounded */
 `;
 

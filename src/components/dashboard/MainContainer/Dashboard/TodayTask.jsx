@@ -162,7 +162,7 @@ import { FaClock } from "react-icons/fa";
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 100%;
+  width: 90%;
   padding: 1rem;
   background-color: white;
 `;

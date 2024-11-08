@@ -173,21 +173,22 @@ const ProposalImage = styled.img`
 `;
 
 const ProposalsSection = () => (
-  <Container>
-    <Header>
-      <Title>Your Proposals</Title>
-      <ViewAllButton>
-        View All <span style={{ marginLeft: "0.25rem" }}>→</span>
-      </ViewAllButton>
-    </Header>
-    <Grid>
-      {proposals.map((proposal) => (
-        <ProposalCard key={proposal.id}>
-          <ProposalImage src={proposal.image} alt={proposal.title} />
-        </ProposalCard>
-      ))}
-    </Grid>
-  </Container>
+  <p>Proposal</p>
+  // <Container>
+  //   <Header>
+  //     <Title>Your Proposals</Title>
+  //     <ViewAllButton>
+  //       View All <span style={{ marginLeft: "0.25rem" }}>→</span>
+  //     </ViewAllButton>
+  //   </Header>
+  //   <Grid>
+  //     {proposals.map((proposal) => (
+  //       <ProposalCard key={proposal.id}>
+  //         <ProposalImage src={proposal.image} alt={proposal.title} />
+  //       </ProposalCard>
+  //     ))}
+  //   </Grid>
+  // </Container>
 );
 
 export default ProposalsSection;

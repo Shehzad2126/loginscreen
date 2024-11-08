@@ -21,10 +21,10 @@ const CalendarOverlay = styled.div`
 
 const WeekViewContainer = styled.div`
   position: relative;
-  width: 100%;
+  width: 90%;
   height: auto;
-  max-width: 20rem; /* Equivalent to max-w-xs */
-  padding: 1rem 2rem; /* Equivalent to px-4 py-1 */
+  // max-width: 20rem; /* Equivalent to max-w-xs */
+  padding: 1rem; /* Equivalent to px-4 py-1 */
   background-color: white; /* Equivalent to bg-white */
   border-radius: 0.5rem; /* Equivalent to rounded-lg */
 `;
@@ -33,16 +33,16 @@ const WeekHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.25rem; /* Equivalent to mb-1 */
-  color: #4a5568; /* Equivalent to text-gray-800 */
+  margin-bottom: 0.05rem;
+  color: #4a5568;
 `;
 
 const WeekDaysContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 0.25rem 1rem; /* Equivalent to py-1 */
-  margin-top: 0.25rem; /* Equivalent to mt-1 */
-  gap: 0.25rem; /* Equivalent to gap-x-1 */
+  padding: 0.25rem;
+  margin-top: 0.25rem;
+  gap: 0.25rem;
 `;
 
 const DayContainer = styled.div`
@@ -54,12 +54,12 @@ const DayContainer = styled.div`
   &.today {
     border: 2px solid #38b2ac; /* Equivalent to border-teal-600 */
     border-radius: 9999px; /* Fully rounded */
-    padding: 0.125rem; /* Equivalent to p-0.5 */
+    padding: 0.025rem; /* Equivalent to p-0.5 */
   }
 `;
 
 const DayName = styled.span`
-  padding: 1rem 1rem; /* Equivalent to py-3 */
+  padding: 1rem 0.7rem; /* Equivalent to py-3 */
   font-size: 0.75rem; /* Equivalent to text-xs */
   font-weight: 500; /* Equivalent to font-medium */
   color: #a0aec0; /* Equivalent to text-gray-500 */
@@ -69,8 +69,8 @@ const DayButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2rem; /* Increased width */
-  height: 2rem; /* Increased height */
+  width: 1.5rem; /* Increased width */
+  height: 1.5rem; /* Increased height */
   border-radius: 9999px; /* Fully rounded */
   font-size: 1rem; /* Increased font size */
   border: 2px solid transparent; /* Default border */

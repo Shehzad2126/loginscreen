@@ -52,11 +52,11 @@ const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   background-color: white;
   border-radius: 0.5rem; /* Equivalent to rounded-lg */
-  width: 20rem; /* Equivalent to w-80 */
-  margin-right: 1.75rem; /* Equivalent to mr-7 */
+  width: 22%; /* Equivalent to w-80 */
+  margin-right: 1rem; /* Equivalent to mr-7 */
 `;
 
 const Header = styled.div`
