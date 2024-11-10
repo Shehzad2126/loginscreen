@@ -218,6 +218,9 @@ const ProgressBar = styled.div`
   @media (max-width: 600px) {
     width: 70%;
   }
+  @media (max-width: 912px) {
+    width: 70%;
+  }
   @media (max-width: 768px) {
     width: 70%;
   }
