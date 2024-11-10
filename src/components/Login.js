@@ -487,11 +487,10 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const MainContainer = styled.div`
   display: flex;
+  padding: 0 10px;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  min-height: 90vh;
-
+  min-height: 100vh;
   @media (max-width: 960px) {
     padding: 10px 30px;
   }
@@ -504,6 +503,8 @@ const ContentContainer = styled.div`
   height: auto;
   background-color: #ffffff;
   border-radius: 10px;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
 
   @media (max-width: 960px) {
@@ -516,6 +517,7 @@ const FormOuterContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 
   @media (max-width: 1280px) {
@@ -546,9 +548,9 @@ const ImageContainer = styled.div`
   background-position: center;
   border-radius: 10px;
   position: relative;
-
+  height: 93vh;
   @media (min-width: 1280px) {
-    width: 40%;
+    width: 50%;
   }
   @media (max-width: 960px) {
     display: none;

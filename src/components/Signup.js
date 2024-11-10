@@ -15,12 +15,17 @@ import {
 
 const SignupContainer = styled.div`
   display: flex;
-  min-height: 92vh;
+  height: 95vh;
+  flex-direction: column;
+  justify-content: center;
   flex-direction: row;
   padding: 10px;
   @media (max-width: 960px) {
     flex-direction: column;
     padding: 10px 30px;
+  }
+  @media (min-width: 1282px) {
+    padding: 10px 0px;
   }
 `;
 
@@ -29,6 +34,7 @@ const FormOuterContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   @media (max-width: 1280px) {
     width: 60%;
@@ -42,6 +48,9 @@ const ContentContainer = styled.div`
   display: flex;
   width: 100%;
   max-width: 1400px;
+  // flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: auto;
   background-color: #ffffff;
   border-radius: 10px;
@@ -53,7 +62,7 @@ const ContentContainer = styled.div`
 `;
 
 const FormSection = styled.div`
-  width: 60%;
+  width: 50%;
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -78,9 +87,10 @@ const FormContent = styled.div`
 `;
 
 const IndicatorSection = styled.div`
-  width: 35%;
+  width: 50%;
   padding: 40px;
   display: flex;
+  height: 95vh;
   flex-direction: column;
   background-color: #f7f7f7;
   align-items: flex-end;
@@ -197,7 +207,23 @@ const UsernameFieldName = styled.div`
 const ProgressBar = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  width: 25%;
+  position: absolute;
+  bottom: 3vh;
+  left: 12%;
+  padding: 0 20px; /* Add padding if needed for spacing */
+  @media (min-width: 1281px) {
+    left: 16%;
+  }
+  @media (max-width: 600px) {
+    width: 70%;
+  }
+  @media (max-width: 768px) {
+    width: 70%;
+  }
+  @media (max-width: 820px) {
+    width: 70%;
+  }
 `;
 
 const Step = styled.span`
@@ -229,6 +255,51 @@ const IndicatorLogo = styled.img`
   }
 `;
 
+// const IndicatorItem = styled.div`
+//   display: flex;
+//   align-items: center;
+//   font-size: 16px;
+//   color: ${(props) => (props.active ? "#008080" : "#ccc")};
+//   font-weight: ${(props) => (props.active ? "bold" : "normal")};
+//   margin-bottom: 20px;
+//   justify-content: flex-end;
+//   width: 100%;
+//   @media (max-width: 600px) {
+//     font-size: 14px;
+//     margin-bottom: 15px;
+//   }
+// `;
+// const IndicatorItem = styled.div`
+//   display: flex;
+//   align-items: center;
+//   font-size: 16px;
+//   color: ${(props) => (props.active ? "#008080" : "#ccc")};
+//   font-weight: ${(props) => (props.active ? "bold" : "normal")};
+//   margin-bottom: 20px;
+//   justify-content: flex-end;
+//   width: 100%;
+//   position: relative;
+
+//   &:not(:last-child)::after {
+//     content: "";
+//     position: absolute;
+//     left: 97%;
+//     bottom: -20px; /* Adjust based on spacing */
+//     width: 2px; /* Line thickness */
+//     height: 3.5vh; /* Adjust line length */
+//     background-color: ${(props) => (props.active ? "#008080" : "#ccc")};
+//     transform: translateX(-50%);
+//   }
+
+//   @media (max-width: 600px) {
+//     font-size: 14px;
+//     margin-bottom: 15px;
+//     &:not(:last-child)::after {
+//       bottom: -15px; /* Adjust based on spacing for smaller screens */
+//       height: 20px; /* Adjust line length for smaller screens */
+//     }
+//   }
+// `;
 const IndicatorItem = styled.div`
   display: flex;
   align-items: center;
@@ -238,9 +309,39 @@ const IndicatorItem = styled.div`
   margin-bottom: 20px;
   justify-content: flex-end;
   width: 100%;
+  position: relative;
+
+  /* Add the line only for items that are not the last one */
+  &:not(:last-of-type)::after {
+    content: "";
+    position: absolute;
+    left: 97%; /* Adjusted to align with the icon */
+    bottom: -20px; /* Adjust based on spacing */
+    width: 2px; /* Line thickness */
+    height: 3.5vh; /* Adjust line length */
+    background-color: ${(props) => (props.active ? "#008080" : "#ccc")};
+    transform: translateX(-50%);
+  }
+     @media (min-width: 1282px) {
+    &:not(:last-of-type)::after {
+    content: "";
+    position: absolute;
+    left: 97%; /* Adjusted to align with the icon */
+    bottom: -20px; /* Adjust based on spacing */
+    width: 2px; /* Line thickness */
+    height: 1.7vh; /* Adjust line length */
+    background-color: ${(props) => (props.active ? "#008080" : "#ccc")};
+    transform: translateX(-50%);
+    }
+    
+
   @media (max-width: 600px) {
     font-size: 14px;
     margin-bottom: 15px;
+    &:not(:last-of-type)::after {
+      bottom: -15px; /* Adjust based on spacing for smaller screens */
+      height: 20px; /* Adjust line length for smaller screens */
+    }
   }
 `;
 
@@ -705,16 +806,14 @@ function Signup() {
                   Let’s Get Started
                 </NextButton>
               </FormStep>
-
-              <ProgressBar>
-                {[1, 2, 3, 4].map((step) => (
-                  <Step key={step} isCurrentStep={currentStep === step}></Step>
-                ))}
-              </ProgressBar>
             </FormContent>
           </FormSection>
         </FormOuterContainer>
-
+        <ProgressBar>
+          {[1, 2, 3, 4].map((step) => (
+            <Step key={step} isCurrentStep={currentStep === step}></Step>
+          ))}
+        </ProgressBar>
         <IndicatorSection>
           <IndicatorHeader>
             <RightLogo>
