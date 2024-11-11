@@ -16,8 +16,8 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const MainContainer = styled.div`
   display: flex;
-  padding: 30px;
-  background-color: yellow;
+  padding: 0 30px;
+  // background-color: yellow;
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -32,8 +32,8 @@ const ContentContainer = styled.div`
   width: 100%;
   // max-width: 1400px;
   height: 95vh;
-  background-color: orange;
-  // background-color: #ffffff;
+  // background-color: orange;
+  background-color: #ffffff;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
