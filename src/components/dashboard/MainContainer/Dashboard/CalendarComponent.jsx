@@ -23,10 +23,9 @@ const WeekViewContainer = styled.div`
   position: relative;
   width: 90%;
   height: auto;
-  // max-width: 20rem; /* Equivalent to max-w-xs */
-  padding: 1rem; /* Equivalent to px-4 py-1 */
-  background-color: white; /* Equivalent to bg-white */
-  border-radius: 0.5rem; /* Equivalent to rounded-lg */
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
 `;
 
 const WeekHeader = styled.div`
@@ -49,31 +48,31 @@ const DayContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.25rem 0; /* Equivalent to py-1 */
+  padding: 0.25rem 0;
 
   &.today {
-    border: 2px solid #38b2ac; /* Equivalent to border-teal-600 */
-    border-radius: 9999px; /* Fully rounded */
-    padding: 0.025rem; /* Equivalent to p-0.5 */
+    border: 2px solid #38b2ac;
+    border-radius: 9999px;
+    padding: 0.025rem;
   }
 `;
 
 const DayName = styled.span`
-  padding: 1rem 0.7rem; /* Equivalent to py-3 */
-  font-size: 0.75rem; /* Equivalent to text-xs */
-  font-weight: 500; /* Equivalent to font-medium */
-  color: #a0aec0; /* Equivalent to text-gray-500 */
+  padding: 1rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #a0aec0;
 `;
 
 const DayButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.5rem; /* Increased width */
-  height: 1.5rem; /* Increased height */
-  border-radius: 9999px; /* Fully rounded */
-  font-size: 1rem; /* Increased font size */
-  border: 2px solid transparent; /* Default border */
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  border: 2px solid transparent;
 
   &.selected {
     background-color: #38b2ac; /* Filled with teal color */

@@ -14,22 +14,52 @@ const DashboardContainer = styled.div`
   width: 98%;
   display: flex;
   flex-direction: column;
+  background-color: orange;
   gap: 1rem;
+  @media (max-width: 960px) {
+    display: flex;
+    width: 95%;
+  }
 `;
 
 const Section = styled.div`
   display: flex;
   gap: 1rem;
   width: 100%;
+  @media (max-width: 960px) {
+    // padding: 0 3%;
+  }
 `;
-
 const LeftDiv = styled.div`
   width: 67%;
   padding: 0px 0.5rem;
+  @media (max-width: 960px) {
+    width: 100%;
+  }
 `;
-
 const RightDiv = styled.div`
   width: 33%;
+  @media (max-width: 960px) {
+    display: none;
+  }
+`;
+const HeaderSection = styled.div`
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+`;
+const LeftHeadingDiv = styled.div`
+  width: 67%;
+  padding: 0px 0.5rem;
+  @media (max-width: 960px) {
+    width: 15%;
+  }
+`;
+const RightSearchDiv = styled.div`
+  width: 33%;
+  @media (max-width: 960px) {
+    width: 85%;
+  }
 `;
 
 const Title = styled.h1`
@@ -43,7 +73,7 @@ const WelcomeCard = styled.div`
   background-color: rgba(16, 137, 143, 1);
   border-radius: 0.5rem;
   color: white;
-  width: 81%;
+  width: 80%;
 `;
 
 const WelcomeCardTitle = styled.h1`
@@ -130,14 +160,14 @@ const Dashboard = () => {
   return (
     <DashboardContainer>
       {/* First main div: Title and Search Field */}
-      <Section>
-        <LeftDiv>
+      <HeaderSection>
+        <LeftHeadingDiv>
           <Title>Dashboard</Title>
-        </LeftDiv>
-        <RightDiv>
+        </LeftHeadingDiv>
+        <RightSearchDiv>
           <SearchField />
-        </RightDiv>
-      </Section>
+        </RightSearchDiv>
+      </HeaderSection>
 
       {/* Second main div: Welcome Card and Calendar */}
       <Section>
