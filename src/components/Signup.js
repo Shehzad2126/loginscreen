@@ -15,17 +15,18 @@ import {
 
 const SignupContainer = styled.div`
   display: flex;
-  height: 95vh;
+  height: 94vh;
   flex-direction: column;
   justify-content: center;
   flex-direction: row;
-  padding: 10px;
+  padding: 3vh 1.5%;
   @media (max-width: 960px) {
     flex-direction: column;
     padding: 10px 30px;
   }
   @media (min-width: 1282px) {
-    padding: 10px 0px;
+    padding: 3vh 3%;
+    height: 94vh;
   }
 `;
 
@@ -47,12 +48,14 @@ const FormOuterContainer = styled.div`
 const ContentContainer = styled.div`
   display: flex;
   width: 100%;
-  max-width: 1400px;
+  // max-width: 1400px;
   // flex-direction: column;
+
   align-items: center;
   justify-content: center;
   height: auto;
-  background-color: #ffffff;
+  // background-color: #ffffff;
+  background-color: yellow;
   border-radius: 10px;
   overflow: hidden;
   @media (max-width: 960px) {
@@ -90,7 +93,7 @@ const IndicatorSection = styled.div`
   width: 50%;
   padding: 40px;
   display: flex;
-  height: 95vh;
+  height: 90vh;
   flex-direction: column;
   background-color: #f7f7f7;
   align-items: flex-end;
@@ -209,24 +212,24 @@ const ProgressBar = styled.div`
   justify-content: space-between;
   width: 25%;
   position: absolute;
-  bottom: 3vh;
+  bottom: 5vh;
   left: 12%;
   padding: 0 20px; /* Add padding if needed for spacing */
   @media (min-width: 1281px) {
     left: 16%;
   }
-  @media (max-width: 600px) {
-    width: 70%;
-  }
+  // @media (max-width: 600px) {
+  //   width: 70%;
+  // }
   @media (max-width: 912px) {
     width: 70%;
   }
-  @media (max-width: 768px) {
-    width: 70%;
-  }
-  @media (max-width: 820px) {
-    width: 70%;
-  }
+  // @media (max-width: 768px) {
+  //   width: 70%;
+  // }
+  // @media (max-width: 820px) {
+  //   width: 70%;
+  // }
 `;
 
 const Step = styled.span`
