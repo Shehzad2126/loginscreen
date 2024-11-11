@@ -16,68 +16,91 @@ import GoogleIcon from "./GoogleIcon";
 
 const MainContainer = styled.div`
   display: flex;
-  align-items: center;
+  height: 94vh;
+  flex-direction: column;
   justify-content: center;
-  padding: 10px;
-  min-height: 95vh;
-
+  flex-direction: row;
+  padding: 3vh 1.5%;
   @media (max-width: 960px) {
-    padding: 10px;
+    flex-direction: column;
+    padding: 10px 30px;
+  }
+  @media (min-width: 1282px) {
+    padding: 3vh 3%;
   }
 `;
 
 const ContentContainer = styled.div`
   display: flex;
   width: 100%;
-  max-width: 1400px; /* Limit max width for xl screens */
-  height: 90vh;
+  // max-width: 1400px; /* Limit max width for xl screens */
+  height: 95vh;
   background-color: #ffffff;
   border-radius: 10px;
   overflow: hidden;
-
+  justify-content: center;
+  align-items: center;
   @media (max-width: 960px) {
     flex-direction: column;
   }
 `;
 
 const FormOuterContainer = styled.div`
-  width: 60%;
+  width: 65%;
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-
+  @media (max-width: 1280px) {
+    width: 60%;
+  }
   @media (max-width: 960px) {
-    width: 100%; /* Full width on smaller screens */
+    width: 100%;
   }
 `;
 
 const FormContainer = styled.div`
+  width: 50%;
   padding: 40px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 400px;
-
-  @media (max-width: 600px) {
+  @media (max-width: 960px) {
+    width: 100%;
     padding: 20px;
   }
+  @media (max-width: 600px) {
+    padding: 15px;
+  }
 `;
-
+const FormContent = styled.div`
+  // max-width: 400px;
+  text-align: center;
+  width: 100%;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+`;
 const ImageContainer = styled.div`
-  width: 40%;
+  width: 50%;
   background-image: url("https://s3-alpha-sig.figma.com/img/f785/95bc/d327319daadc21099f439d4f6f86f7e0?Expires=1731888000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bIC9h-5mJ8O-Uv04QBJd2xRje1Rd~qeAQZ2ZFKu8vWc3l28QkRcUudWrm~2ABkHGpqJ8oSm9DvPJsyqO3Z76t3Okkg3XIAZ4JPAYmPiRH2niXhwnJkU~uCvEF~phDjbHvXKm-aiuFhrVaQybJSg7usCDlmVES4NSw6M4GiUY~YKlrriu4D4nJghiujKHfDRmwRhZGG97TLMVevtDmcBtX-yIZj9j-SxHYwkro-9J3Zde315YNh2Qq~RoGXDHKszyfNu6sSERVDx9j78YwyHHOgfa5ZiUdjhZFKKtJu7~gb8XWLb3gLENI8QDNva2wXGIf8uC~7-kfL2HxZT7o2ACQg__");
   background-size: cover;
   background-position: center;
   border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  height: 90vh;
+  flex-direction: column;
+  background-color: #f7f7f7;
+  align-items: flex-end;
   position: relative;
-
-  @media (max-width: 1280px) {
-    width: 40%;
-  }
   @media (max-width: 960px) {
-    display: none; /* Hide on xs, sm, and md */
+    display: none;
+  }
+  @media (max-width: 600px) {
+    padding: 15px;
   }
 `;
 
@@ -222,20 +245,12 @@ const SignUpPageLink = styled.div`
   position: absolute;
   top: 55px;
   right: 20px;
-  font-size: 0.575rem;
+  font-weight: bold;
+  font-size: 0.795rem;
   text-decoration: underline;
   cursor: pointer;
-
-  p {
-    margin: 0;
-    font-weight: bold;
-  }
-
-  &:hover {
-    text-decoration: underline;
-  }
-
   @media (max-width: 960px) {
+    position: absolute;
     top: 25px;
     right: 20px;
   }

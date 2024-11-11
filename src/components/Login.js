@@ -36,6 +36,7 @@ const ContentContainer = styled.div`
   border-radius: 10px;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
   overflow: hidden;
   @media (max-width: 960px) {
     flex-direction: column;
@@ -86,7 +87,7 @@ const ImageContainer = styled.div`
   background-size: cover;
   background-position: center;
   border-radius: 10px;
-  padding: 40px;
+  padding: 10px 40px;
   display: flex;
   height: 90vh;
   flex-direction: column;
@@ -131,6 +132,7 @@ const FormTitle = styled(Typography)`
   font-size: 18px !important;
   text-align: center;
   margin-bottom: 10px;
+
   @media (max-width: 960px) {
     font-size: 16px !important;
   }
@@ -332,6 +334,7 @@ const Login = () => {
   const handleClickShowPassword = () => setShowPassword((prev) => !prev);
   const handleForgotPassword = () => {
     if (!username) {
+      navigate("/reset-password", { state: { email: username } });
       setErrors((prevErrors) => ({
         ...prevErrors,
         username: "Please enter your Email to reset the password",

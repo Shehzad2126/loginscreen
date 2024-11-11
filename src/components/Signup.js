@@ -90,6 +90,7 @@ const IndicatorSection = styled.div`
   background-color: #f7f7f7;
   align-items: flex-end;
   position: relative;
+  border-radius: 10px;
   @media (max-width: 960px) {
     display: none;
   }
@@ -99,7 +100,7 @@ const IndicatorSection = styled.div`
 `;
 
 const StyledTextField = styled(MuiTextField)`
-  margin-bottom: 16px;
+  margin-bottom: 0px;
   & .MuiInputBase-root {
     height: 6vh;
     padding: 0 10px;
@@ -108,6 +109,9 @@ const StyledTextField = styled(MuiTextField)`
     }
     @media (max-width: 600px) {
       height: 4.5vh;
+    }
+    @media (min-width: 1282px) {
+      height: 5vh;
     }
   }
 `;
@@ -183,8 +187,22 @@ const ErrorText = styled.p`
 `;
 
 const FieldContainer = styled.div`
-  width: 100%;
   margin-bottom: 16px;
+  & .MuiInputBase-root {
+    height: 6vh;
+    padding: 0 10px;
+    @media (max-width: 960px) {
+      height: 5vh;
+    }
+    @media (max-width: 600px) {
+      height: 4.5vh;
+    }
+    @media (min-width: 1282px) {
+      height: 5vh;
+    }
+  }
+  width: 100%;
+  // margin-bottom: 16px;
 `;
 
 const UsernameFieldName = styled.div`
