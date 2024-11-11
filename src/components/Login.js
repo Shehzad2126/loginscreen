@@ -13,45 +13,42 @@ import {
 } from "@mui/material";
 import GoogleIcon from "./GoogleIcon";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-
 const MainContainer = styled.div`
   display: flex;
-  padding: 0 30px;
-  // background-color: yellow;
-  align-items: center;
+  height: 94vh;
+  flex-direction: column;
   justify-content: center;
-  height: 100vh;
+  flex-direction: row;
+  padding: 3vh 1.5%;
   @media (max-width: 960px) {
+    flex-direction: column;
     padding: 10px 30px;
+  }
+  @media (min-width: 1282px) {
+    padding: 3vh 3%;
   }
 `;
 
 const ContentContainer = styled.div`
   display: flex;
-
   width: 100%;
-  // max-width: 1400px;
   height: 95vh;
-  // background-color: orange;
-  background-color: #ffffff;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-
   @media (max-width: 960px) {
     flex-direction: column;
   }
 `;
 
 const FormOuterContainer = styled.div`
-  width: 50%;
+  width: 65%;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   @media (max-width: 1280px) {
     width: 60%;
   }
@@ -61,31 +58,46 @@ const FormOuterContainer = styled.div`
 `;
 
 const FormContainer = styled.div`
+  width: 50%;
   padding: 40px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 60%;
-  // max-width: 400px;
-
-  @media (max-width: 600px) {
+  @media (max-width: 960px) {
+    width: 100%;
     padding: 20px;
   }
+  @media (max-width: 600px) {
+    padding: 15px;
+  }
 `;
-
+const FormContent = styled.div`
+  // max-width: 400px;
+  text-align: center;
+  width: 100%;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+`;
 const ImageContainer = styled.div`
   width: 50%;
   background-image: url("https://s3-alpha-sig.figma.com/img/f785/95bc/d327319daadc21099f439d4f6f86f7e0?Expires=1731888000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bIC9h-5mJ8O-Uv04QBJd2xRje1Rd~qeAQZ2ZFKu8vWc3l28QkRcUudWrm~2ABkHGpqJ8oSm9DvPJsyqO3Z76t3Okkg3XIAZ4JPAYmPiRH2niXhwnJkU~uCvEF~phDjbHvXKm-aiuFhrVaQybJSg7usCDlmVES4NSw6M4GiUY~YKlrriu4D4nJghiujKHfDRmwRhZGG97TLMVevtDmcBtX-yIZj9j-SxHYwkro-9J3Zde315YNh2Qq~RoGXDHKszyfNu6sSERVDx9j78YwyHHOgfa5ZiUdjhZFKKtJu7~gb8XWLb3gLENI8QDNva2wXGIf8uC~7-kfL2HxZT7o2ACQg__");
   background-size: cover;
   background-position: center;
   border-radius: 10px;
+  padding: 40px;
+  display: flex;
+  height: 90vh;
+  flex-direction: column;
+  background-color: #f7f7f7;
+  align-items: flex-end;
   position: relative;
-  height: 93vh;
-  @media (min-width: 1280px) {
-    width: 50%;
-  }
   @media (max-width: 960px) {
     display: none;
+  }
+  @media (max-width: 600px) {
+    padding: 15px;
   }
 `;
 
@@ -105,10 +117,12 @@ const SignUpPageLink = styled.div`
 `;
 
 const Logo = styled.div`
-  margin-bottom: 20px;
-
+  margin-bottom: 10px;
   img {
     width: 40px;
+    @media (max-width: 600px) {
+      width: 35px;
+    }
   }
 `;
 
@@ -117,7 +131,6 @@ const FormTitle = styled(Typography)`
   font-size: 18px !important;
   text-align: center;
   margin-bottom: 10px;
-
   @media (max-width: 960px) {
     font-size: 16px !important;
   }
@@ -139,7 +152,16 @@ const UsernameFieldName = styled.div`
   font-family: "Roboto", sans-serif;
   font-size: 14px !important;
   font-weight: 400 !important;
+  display: flex;
+  text-align: left;
   margin-bottom: 2px;
+  color: black;
+`;
+
+const PasswordFieldName = styled.div`
+  font-family: "Roboto", sans-serif;
+  font-size: 14px !important;
+  font-weight: 400 !important;
   color: black;
 `;
 
@@ -148,22 +170,6 @@ const ForgotPasswordLinkText = styled.div`
   font-size: 12px !important;
   font-weight: 400 !important;
   text-decoration-color: black;
-  color: black;
-`;
-
-const ForgotPasswordText = styled.div`
-  font-family: "Roboto", sans-serif;
-  font-size: 12px !important;
-  font-weight: 400 !important;
-  text-decoration-color: black;
-  color: black;
-  margin-right: 2px;
-`;
-
-const PasswordFieldName = styled.div`
-  font-family: "Roboto", sans-serif;
-  font-size: 14px !important;
-  font-weight: 400 !important;
   color: black;
 `;
 
@@ -176,27 +182,27 @@ const LoginwithGoogleText = styled.div`
 
 const StyledTextField = styled(MuiTextField)`
   margin-bottom: 16px;
-
   & .MuiInputBase-root {
-    height: 5vh;
+    height: 6vh;
     padding: 0 10px;
-
     @media (max-width: 960px) {
       height: 5vh;
     }
     @media (max-width: 600px) {
       height: 4.5vh;
     }
+    @media (min-width: 1282px) {
+      height: 5vh;
+    }
   }
 `;
 
 const StyledButton = styled(Button)`
-  margin-top: 20px !important;
+  margin-top: 0px !important;
   background: rgba(16, 137, 143, 1) !important;
   border-radius: 8px !important;
   height: 6vh;
   font-size: 16px;
-
   @media (max-width: 960px) {
     height: 5vh;
     font-size: 14px;
@@ -208,13 +214,12 @@ const StyledButton = styled(Button)`
 `;
 
 const GoogleButton = styled(Button)`
-  margin-top: 20px !important;
+  margin-top: 0px !important;
   border: 1px solid #d9d9d9 !important;
   color: #555 !important;
   border-radius: 8px !important;
   height: 6vh;
   font-size: 16px;
-
   @media (max-width: 960px) {
     height: 5vh;
     font-size: 14px;
@@ -242,18 +247,15 @@ const DividerText = styled.div`
   width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
-
   &::before,
   &::after {
     content: "";
     flex: 1;
     border-bottom: 1px solid #ddd;
   }
-
   &::before {
     margin-right: 10px;
   }
-
   &::after {
     margin-left: 10px;
   }
@@ -392,86 +394,91 @@ const Login = () => {
       />
       <ContentContainer>
         <FormOuterContainer>
-          <SignUpPageLink onClick={handleSignup}>
-            <p>Signup Here</p>
-          </SignUpPageLink>
           <FormContainer>
-            <Logo>
-              <img
-                src="https://s3-alpha-sig.figma.com/img/1a75/de47/44b563e51431be51183dd063dfc7c51d?Expires=1731888000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=UCzhE1gSht9L37pLDA37TcUxV8VgmUszX6b-HKZf8jNXH4aM5AMhKDCgw1ThxalGx609Jg6CkPJvb1Wpm0wuL77UTP4QM5Yrqzc80MTktnorHxLlhniFdIK66DOWAzTge9uzIPrtaM6Dg6eGkMLElx79TnoKjAHzHOIrjlGa8laU8mWOf5sg4F~7A1ZbQhNi5nuD-S3a77HPbzly8gjYpgAHSo9~uPZKgh95qAIS4BOM1m3ojMjMYZUBOhWEmzItyw0ovoC5l2ChLO~PlI9fatUeJrOA4dCGNvPoDvHrHkcaD9YQyf1kwSW1DRyrhdjdAx9IxkUvYYlV3xQ3jEawcA__"
-                alt="Logo"
-              />
-            </Logo>
-            <FormTitle variant="h6">Login</FormTitle>
-            <NormalText>Let's get things done smarter and faster.</NormalText>
+            <SignUpPageLink onClick={handleSignup}>
+              <p>Signup Here</p>
+            </SignUpPageLink>
+            <FormContent>
+              <Logo>
+                <img
+                  src="https://s3-alpha-sig.figma.com/img/1a75/de47/44b563e51431be51183dd063dfc7c51d?Expires=1731888000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=UCzhE1gSht9L37pLDA37TcUxV8VgmUszX6b-HKZf8jNXH4aM5AMhKDCgw1ThxalGx609Jg6CkPJvb1Wpm0wuL77UTP4QM5Yrqzc80MTktnorHxLlhniFdIK66DOWAzTge9uzIPrtaM6Dg6eGkMLElx79TnoKjAHzHOIrjlGa8laU8mWOf5sg4F~7A1ZbQhNi5nuD-S3a77HPbzly8gjYpgAHSo9~uPZKgh95qAIS4BOM1m3ojMjMYZUBOhWEmzItyw0ovoC5l2ChLO~PlI9fatUeJrOA4dCGNvPoDvHrHkcaD9YQyf1kwSW1DRyrhdjdAx9IxkUvYYlV3xQ3jEawcA__"
+                  alt="Logo"
+                />
+              </Logo>
+              <FormTitle variant="h6">Login</FormTitle>
+              <NormalText>Let's get things done smarter and faster.</NormalText>
 
-            {errors.general && (
-              <Typography
-                color="error"
-                variant="body2"
-                align="center"
-                gutterBottom
-              >
-                {errors.general}
-              </Typography>
-            )}
-            <FieldContainer>
-              <Typography variant="body2">
-                <UsernameFieldName>Username or Email</UsernameFieldName>
-              </Typography>
-              <StyledTextField
-                variant="outlined"
-                fullWidth
-                value={username}
-                onChange={handleFieldChange("username")}
-                error={!!errors.username}
-                helperText={errors.username}
-              />
-            </FieldContainer>
-            <FieldContainer>
-              <LabelLinkContainer>
-                <Typography variant="body2">
-                  <PasswordFieldName>Password</PasswordFieldName>
+              {errors.general && (
+                <Typography
+                  color="error"
+                  variant="body2"
+                  align="center"
+                  gutterBottom
+                >
+                  {errors.general}
                 </Typography>
-                <StyledLink onClick={handleForgotPassword}>
-                  <ForgotPasswordLinkText>
-                    Forgot your password?
-                  </ForgotPasswordLinkText>
-                </StyledLink>
-              </LabelLinkContainer>
-              <StyledTextField
+              )}
+              <FieldContainer>
+                <Typography variant="body2">
+                  <UsernameFieldName>Username or Email</UsernameFieldName>
+                </Typography>
+                <StyledTextField
+                  variant="outlined"
+                  fullWidth
+                  value={username}
+                  onChange={handleFieldChange("username")}
+                  error={!!errors.username}
+                  helperText={errors.username}
+                />
+              </FieldContainer>
+              <FieldContainer>
+                <LabelLinkContainer>
+                  <Typography variant="body2">
+                    <PasswordFieldName>Password</PasswordFieldName>
+                  </Typography>
+                  <StyledLink onClick={handleForgotPassword}>
+                    <ForgotPasswordLinkText>
+                      Forgot your password?
+                    </ForgotPasswordLinkText>
+                  </StyledLink>
+                </LabelLinkContainer>
+                <StyledTextField
+                  variant="outlined"
+                  fullWidth
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={handleFieldChange("password")}
+                  error={!!errors.password}
+                  helperText={errors.password}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          onClick={handleClickShowPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </FieldContainer>
+
+              <StyledButton variant="contained" fullWidth onClick={handleLogin}>
+                Login
+              </StyledButton>
+
+              <DividerText>OR</DividerText>
+
+              <GoogleButton
                 variant="outlined"
+                startIcon={<GoogleIcon style={{ color: "#4285F4" }} />}
                 fullWidth
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={handleFieldChange("password")}
-                error={!!errors.password}
-                helperText={errors.password}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={handleClickShowPassword} edge="end">
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </FieldContainer>
-
-            <StyledButton variant="contained" fullWidth onClick={handleLogin}>
-              Login
-            </StyledButton>
-
-            <DividerText>OR</DividerText>
-
-            <GoogleButton
-              variant="outlined"
-              startIcon={<GoogleIcon style={{ color: "#4285F4" }} />}
-              fullWidth
-            >
-              <LoginwithGoogleText>Login with Gmail</LoginwithGoogleText>
-            </GoogleButton>
+              >
+                <LoginwithGoogleText>Login with Gmail</LoginwithGoogleText>
+              </GoogleButton>
+            </FormContent>
           </FormContainer>
         </FormOuterContainer>
         <ImageContainer>

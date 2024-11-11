@@ -6,12 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { FaUserAlt, FaEnvelope, FaLock, FaRocket } from "react-icons/fa";
-import {
-  TextField as MuiTextField,
-  Button,
-  Typography,
-  Link,
-} from "@mui/material";
+import { TextField as MuiTextField, Button, Typography } from "@mui/material";
 
 const SignupContainer = styled.div`
   display: flex;
@@ -48,14 +43,11 @@ const FormOuterContainer = styled.div`
 const ContentContainer = styled.div`
   display: flex;
   width: 100%;
-  // max-width: 1400px;
-  // flex-direction: column;
 
   align-items: center;
   justify-content: center;
-  height: auto;
+  height: 95vh;
   // background-color: #ffffff;
-  background-color: yellow;
   border-radius: 10px;
   overflow: hidden;
   @media (max-width: 960px) {
@@ -261,51 +253,6 @@ const IndicatorLogo = styled.img`
   }
 `;
 
-// const IndicatorItem = styled.div`
-//   display: flex;
-//   align-items: center;
-//   font-size: 16px;
-//   color: ${(props) => (props.active ? "#008080" : "#ccc")};
-//   font-weight: ${(props) => (props.active ? "bold" : "normal")};
-//   margin-bottom: 20px;
-//   justify-content: flex-end;
-//   width: 100%;
-//   @media (max-width: 600px) {
-//     font-size: 14px;
-//     margin-bottom: 15px;
-//   }
-// `;
-// const IndicatorItem = styled.div`
-//   display: flex;
-//   align-items: center;
-//   font-size: 16px;
-//   color: ${(props) => (props.active ? "#008080" : "#ccc")};
-//   font-weight: ${(props) => (props.active ? "bold" : "normal")};
-//   margin-bottom: 20px;
-//   justify-content: flex-end;
-//   width: 100%;
-//   position: relative;
-
-//   &:not(:last-child)::after {
-//     content: "";
-//     position: absolute;
-//     left: 97%;
-//     bottom: -20px; /* Adjust based on spacing */
-//     width: 2px; /* Line thickness */
-//     height: 3.5vh; /* Adjust line length */
-//     background-color: ${(props) => (props.active ? "#008080" : "#ccc")};
-//     transform: translateX(-50%);
-//   }
-
-//   @media (max-width: 600px) {
-//     font-size: 14px;
-//     margin-bottom: 15px;
-//     &:not(:last-child)::after {
-//       bottom: -15px; /* Adjust based on spacing for smaller screens */
-//       height: 20px; /* Adjust line length for smaller screens */
-//     }
-//   }
-// `;
 const IndicatorItem = styled.div`
   display: flex;
   align-items: center;
@@ -339,7 +286,6 @@ const IndicatorItem = styled.div`
     background-color: ${(props) => (props.active ? "#008080" : "#ccc")};
     transform: translateX(-50%);
     }
-    
 
   @media (max-width: 600px) {
     font-size: 14px;
