@@ -115,6 +115,11 @@ const SignUpPageLink = styled.div`
     top: 25px;
     right: 20px;
   }
+  @media (min-width: 1282px) {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
 `;
 
 const Logo = styled.div`
@@ -345,7 +350,7 @@ const Login = () => {
   };
 
   const handleSignup = () => {
-    navigate("/signup");
+    navigate("/signup/account-details");
   };
 
   const handleLogin = () => {
