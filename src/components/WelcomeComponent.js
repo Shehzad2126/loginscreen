@@ -254,7 +254,21 @@ const ParaHeadText = styled.div`
   font-size: 12px;
   font-weight: 600;
 `;
-
+const OverlayImage = styled.img`
+  position: absolute;
+  filter: brightness(200%);
+  width: 50%;
+  height: auto;
+  opacity: 0.5;
+  top: 46%;
+  left: 0%;
+  transform: rotate(-30deg);
+  @media (max-width: 600px) {
+    width: 70%;
+    top: 40%;
+    left: 15%;
+  }
+`;
 const WelcomeComponent = () => {
   const navigate = useNavigate();
 
@@ -343,6 +357,10 @@ const WelcomeComponent = () => {
               <FaRocket />
             </IconWrapper>
           </IndicatorItem>
+          <OverlayImage
+            src="https://s3-alpha-sig.figma.com/img/a260/f84e/f9724a4f59da8e2a71708f3bf0e9d52a?Expires=1731888000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=EQDfpiIS7GEJamMz2e9z0732nkw2BZmeaA1Xf9BggECugWCuAC0Cg4Ok8HcW1LppClOM-NLRaH9okFDIPHZoIUNXN3qHFNZUHdlz3vlrCaBldxLsX1jXTI7Q0WxAh5NcixGuHKP-4QiZZ7cFr4f~uWeavY1FNPGVTfG15v4u-4mrKyVlVk7sdlMY3MnVnV3x4FeoFJg4zQuuV7NJJc3BW63IA5TVhWUIZMcuTxersU0sMH~nlGMAuh6h9aStM~OrPOe597Wh8D7eth9WaW1sueqx548HSmeXJTEfDt4UuG-6oXIkQ5SEQsZJZVC6xE7cb6RRUwIoUwQlrL8jdp3VEw__"
+            alt="Overlay Image"
+          />
         </IndicatorSection>
       </ContentContainer>
     </SignupContainer>

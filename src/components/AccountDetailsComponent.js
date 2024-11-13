@@ -4,7 +4,7 @@ import { TextField, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { FaUserAlt, FaEnvelope, FaLock, FaRocket } from "react-icons/fa";
 import GoogleIcon from "./GoogleIcon";
-// Styled Components
+import axios from "axios";
 const SignupContainer = styled.div`
   display: flex;
   height: 94vh;
@@ -413,10 +413,10 @@ const AccountDetailsComponent = () => {
         newErrors.email = "Email is required";
       } else if (!email.includes("@")) {
         newErrors.email = "Email should contain '@'";
-      } else if (!email.endsWith("@idevo.com")) {
-        newErrors.email =
-          "Email domain should be 'idevo.com' (e.g., username@idevo.com)";
-      }
+      } //  else if (!email.endsWith("@idevo.com")) {
+      //   newErrors.email =
+      //     "Email domain should be 'idevo.com' (e.g., username@idevo.com)";
+      // }
 
       if (!profileType) {
         newErrors.profileType = "Profile type is required";
@@ -432,11 +432,27 @@ const AccountDetailsComponent = () => {
     return true;
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (validateStepOne()) {
-      navigate("/signup/email-verification");
+      try {
+        const response = await axios.post("http://localhost:5000/api/users", {
+          username,
+          email,
+          type: profileType,
+        });
+
+        if (response.data.status === "success") {
+          navigate("/signup/:email/:token", { state: { email } });
+        }
+      } catch (error) {
+        setErrors({ general: "There was an error. Please try again." });
+      }
     }
   };
+  // if (validateStepOne()) {
+  //   navigate("/signup/:email/:token");
+  // }
+
   const handleLogin = () => {
     navigate("/login");
   };

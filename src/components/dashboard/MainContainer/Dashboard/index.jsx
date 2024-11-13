@@ -14,7 +14,6 @@ const DashboardContainer = styled.div`
   width: 98%;
   display: flex;
   flex-direction: column;
-  background-color: orange;
   gap: 1rem;
   @media (max-width: 960px) {
     display: flex;

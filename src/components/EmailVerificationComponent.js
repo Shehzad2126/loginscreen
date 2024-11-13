@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Button, Typography } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaUserAlt, FaEnvelope, FaLock, FaRocket } from "react-icons/fa";
-
+import axios from "axios";
 // Styled Components
 const SignupContainer = styled.div`
   display: flex;
@@ -290,7 +290,7 @@ const EmailVerificationComponent = () => {
   const location = useLocation();
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
-
+  const [isVerified, setIsVerified] = useState(false);
   // Get email from previous page (AccountDetailsComponent)
   useEffect(() => {
     if (location.state && location.state.email) {
@@ -300,9 +300,26 @@ const EmailVerificationComponent = () => {
     }
   }, [location.state]);
 
-  const handleNext = () => {
+  const handleNext = async () => {
     // Navigate to next step
-    navigate("/signup/create-password");
+    // navigate("/signup/create-password");
+    try {
+      const token = new URLSearchParams(window.location.search).get("token");
+      const response = await axios.get(
+        `http://localhost:5000/api/users/verifyEmail/${token}`
+      );
+
+      if (response.data.status === "success") {
+        setIsVerified(true);
+        alert("Email verified successfully!");
+        navigate("/signup/create-password");
+      } else {
+        alert("Email verification failed.");
+      }
+    } catch (error) {
+      console.error("Error verifying email:", error);
+      alert("There was an error verifying your email.");
+    }
   };
   const handleLogin = () => {
     navigate("/login");

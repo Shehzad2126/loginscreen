@@ -52,10 +52,7 @@ const App = () => {
           path="/signup/account-details"
           element={<AccountDetails />}
         />{" "}
-        <Route
-          path="/signup/email-verification"
-          element={<EmailVerification />}
-        />{" "}
+        <Route path="/signup/:email/:token" element={<EmailVerification />} />{" "}
         <Route path="/signup/create-password" element={<CreatePassword />} />{" "}
         <Route path="/signup/welcome" element={<Welcome />} /> {/* Step 4 */}
         <Route path="/reset-password" element={<ResetPassword />} />
