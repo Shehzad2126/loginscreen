@@ -4,7 +4,9 @@ import { Button, Typography } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaUserAlt, FaEnvelope, FaLock, FaRocket } from "react-icons/fa";
 import axios from "axios";
-// Styled Components
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const SignupContainer = styled.div`
   display: flex;
   height: 94vh;
@@ -288,21 +290,60 @@ const OverlayImage = styled.img`
 
 const EmailVerificationComponent = () => {
   const location = useLocation();
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("shahzadaliarain2126@gmail.com");
+  // const [isVerified, setIsVerified] = useState(false);
+  // const [resendStatus, setResendStatus] = useState(null);
   const navigate = useNavigate();
-  const [isVerified, setIsVerified] = useState(false);
-  // Get email from previous page (AccountDetailsComponent)
+
+  const handleResendEmail = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/users/resendVerification",
+        { email }
+      );
+      console.log("This is response of handleResendEmail", response);
+      if (response.data.status === "success") {
+        toast.success(
+          "Verification email sent again. Please check your inbox."
+        );
+      } else {
+        console.log("This is response of handleResendEmail", response);
+        toast.error("Failed to resend verification email. Try again later.");
+      }
+    } catch (error) {
+      console.error("Error resending verification email:", error);
+      toast.error("Error resending verification email. Try again later.");
+    }
+  };
+
   useEffect(() => {
     if (location.state && location.state.email) {
       setEmail(location.state.email); // Use email from AccountDetailsComponent
     } else {
-      setEmail("example@gmail.com"); // Default email if not provided
+      setEmail("shahzadaliarain2126@gmail.com"); // Default email if not provided
     }
   }, [location.state]);
 
+  // const handleNext = async () => {
+  //   try {
+  //     const token = new URLSearchParams(window.location.search).get("token");
+  //     const response = await axios.get(
+  //       `http://localhost:5000/api/users/verifyEmail/${token}`
+  //     );
+
+  //     if (response.data.status === "success") {
+  //       alert("Email verified successfully!");
+  //       navigate("/signup/create-password");
+  //     } else {
+  //       alert("Email verification failed.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error verifying email:", error);
+  //     alert("There was an error verifying your email.");
+  //   }
+  // };
+
   const handleNext = async () => {
-    // Navigate to next step
-    // navigate("/signup/create-password");
     try {
       const token = new URLSearchParams(window.location.search).get("token");
       const response = await axios.get(
@@ -310,15 +351,15 @@ const EmailVerificationComponent = () => {
       );
 
       if (response.data.status === "success") {
-        setIsVerified(true);
-        alert("Email verified successfully!");
-        navigate("/signup/create-password");
+        toast.success("Email verified successfully!");
+        navigate("/signup/create-password", {
+          state: { token: response.data.result.token },
+        });
       } else {
-        alert("Email verification failed.");
+        toast.error("Email verification failed.");
       }
     } catch (error) {
-      console.error("Error verifying email:", error);
-      alert("There was an error verifying your email.");
+      toast.error("There was an error verifying your email.");
     }
   };
   const handleLogin = () => {
@@ -327,6 +368,13 @@ const EmailVerificationComponent = () => {
 
   return (
     <SignupContainer>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        closeOnClick
+        pauseOnHover
+      />
       <ContentContainer>
         <FormOuterContainer>
           <SignUpPageLink onClick={handleLogin}>
@@ -346,7 +394,10 @@ const EmailVerificationComponent = () => {
                 <strong>{email}</strong>
               </Subtitle>
               <Subtitle>
-                Didn’t get the code? <ResendLink> Click to resend</ResendLink>
+                Didn’t get the email?{" "}
+                <ResendLink onClick={handleResendEmail}>
+                  Click to resend
+                </ResendLink>
               </Subtitle>
               <NextButton onClick={handleNext}>Continue</NextButton>
             </FormContent>

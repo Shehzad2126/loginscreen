@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import { Typography, TextField as MuiTextField, Button } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GoogleIcon from "./GoogleIcon";
 
@@ -157,13 +158,25 @@ const OverlayLogo = styled.img`
   top: 3%;
   left: 85%;
 `;
+const ResendLinkContainer = styled.div`
+  text-align: center;
+  margin-top: 10px;
+  // text-color: ;
+`;
+
+const ResendLink = styled.a`
+  color: black;
+  text-decoration: underline;
+  cursor: pointer;
+`;
 
 const VerifyOtp = () => {
   const [otp, setOtp] = useState(["", "", "", "", ""]);
   const [errors, setErrors] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
-  const loginEmail = location.state?.email || "";
+  const loginEmail = location.state?.email || "shahzadaliarain2126@gmail.com";
+  const initialToken = location.state?.token || ""; // Token received for OTP verification
 
   const handleOTPChange = (element, index) => {
     const value = element.value.replace(/[^0-9]/g, "");
@@ -178,14 +191,94 @@ const VerifyOtp = () => {
     }
   };
 
-  const handleContinueOtp = () => {
-    if (!otp) {
+  // const handleContinueOtp = async () => {
+  //   const enteredOtp = otp.join("");
+  //   if (!enteredOtp) {
+  //     setErrors({ otp: "OTP is required" });
+  //     return;
+  //   }
+
+  //   try {
+  //     const response = await axios.post(
+  //       "http://localhost:5000/api/users/resendOtp",
+  //       {
+  //         token: initialToken,
+  //         otp: enteredOtp,
+  //       }
+  //     );
+
+  //     if (response.data.status === "success") {
+  //       toast.success("OTP verified successfully!");
+  //       const newToken = response.data.result.token; // Use this token in the reset password API
+  //       navigate("/reset-password", { state: { token: newToken } });
+  //     }
+  //   } catch (error) {
+  //     setErrors({
+  //       otp: error.response?.data?.message || "OTP verification failed",
+  //     });
+  //   }
+  // };
+  const handleContinueOtp = async () => {
+    const enteredOtp = otp.join(""); // Combine the OTP array to a single string
+    if (!enteredOtp) {
       setErrors({ otp: "OTP is required" });
-    } else if (otp.join("") !== "12345") {
-      setErrors({ otp: "The OTP does not match" });
-    } else {
-      setErrors({});
-      navigate("/reset-password");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/users/verifyOtp", // Updated API endpoint for OTP verification
+        {
+          email: loginEmail, // Send the email of the user
+          otp: enteredOtp, // Send the entered OTP
+        }
+      );
+
+      if (response.data.status === "success") {
+        toast.success("OTP verified successfully!");
+        // Proceed to reset password or next step
+        navigate("/reset-password", {
+          state: { token: response.data.result.token },
+        });
+      } else {
+        toast.error("OTP verification failed. Please try again.");
+      }
+    } catch (error) {
+      setErrors({
+        otp: error.response?.data?.message || "OTP verification failed",
+      });
+    }
+  };
+  // const handleResendOtp = async () => {
+  //   try {
+  //     const response = await axios.post(
+  //       "http://localhost:5000/api/users/resendEmailVerification",
+  //       { email: loginEmail }
+  //     );
+
+  //     if (response.data.status === "success") {
+  //       toast.success("OTP sent again. Please check your email.");
+  //     } else {
+  //       toast.error("Failed to resend OTP. Please try again.");
+  //     }
+  //   } catch (error) {
+  //     toast.error("Error resending OTP. Try again later.");
+  //   }
+  // };
+  const handleResendOtp = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/users/resendOtp", // Resend OTP API
+        { email: loginEmail } // Send the email address
+      );
+
+      if (response.data.status === "success") {
+        toast.success("OTP sent again. Please check your email.");
+      } else {
+        toast.error("Failed to resend OTP. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Error resending OTP. Try again later.");
     }
   };
 
@@ -243,6 +336,14 @@ const VerifyOtp = () => {
                 {errors.otp}
               </Typography>
             )}
+            <ResendLinkContainer>
+              <Typography color="rgba(130, 130, 130, 1)" variant="body2">
+                Didn’t get the code?{" "}
+                <ResendLink onClick={handleResendOtp}>
+                  Click to resend
+                </ResendLink>
+              </Typography>
+            </ResendLinkContainer>
             <StyledButton
               variant="contained"
               fullWidth
