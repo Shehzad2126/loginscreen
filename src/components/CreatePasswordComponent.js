@@ -8,6 +8,7 @@ import {
   InputAdornment,
   IconButton,
 } from "@mui/material";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaUserAlt, FaEnvelope, FaLock, FaRocket } from "react-icons/fa";
 
@@ -320,6 +321,8 @@ const CreatePasswordComponent = () => {
     confirmPassword: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [apiError, setApiError] = useState("");
   const handleFieldChange = (field, value) => {
     if (field === "password") setPassword(value);
     if (field === "confirmPassword") setConfirmPassword(value);
@@ -353,9 +356,36 @@ const CreatePasswordComponent = () => {
     return Object.keys(errors).length === 0;
   };
 
-  const handleNext = () => {
+  // const handleNext = () => {
+  //   if (validatePassword()) {
+  //     navigate("/signup/welcome");
+  //   }
+  // };
+  const handleNext = async () => {
     if (validatePassword()) {
-      navigate("/signup/welcome");
+      setLoading(true);
+      setApiError("");
+      try {
+        const token =
+          "47daa7e93507c7ef5269e3fd67fda60487ed13812d92baefef06979f99aae55d"; // Replace with dynamic token
+        const response = await axios.post(
+          "http://localhost:5000/api/users/setPassword",
+          {
+            token,
+            password,
+          }
+        );
+        if (response.data.status === "success") {
+          navigate("/signup/welcome");
+        }
+      } catch (error) {
+        setApiError(
+          error.response?.data?.message ||
+            "An error occurred. Please try again."
+        );
+      } finally {
+        setLoading(false);
+      }
     }
   };
   const handleLogin = () => {

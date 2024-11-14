@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 import {
   TextField as MuiTextField,
   Button,
@@ -329,6 +330,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({
     general: "",
     username: "",
@@ -337,23 +339,54 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleClickShowPassword = () => setShowPassword((prev) => !prev);
-  const handleForgotPassword = () => {
+  // const handleForgotPassword = () => {
+  //   if (!username) {
+  //     navigate("/reset-password", { state: { email: username } });
+  //     setErrors((prevErrors) => ({
+  //       ...prevErrors,
+  //       username: "Please enter your Email to reset the password",
+  //     }));
+  //   } else {
+  //     navigate("/reset-password", { state: { email: username } });
+  //   }
+  // };
+  const handleForgotPassword = async () => {
     if (!username) {
-      navigate("/reset-password", { state: { email: username } });
       setErrors((prevErrors) => ({
         ...prevErrors,
-        username: "Please enter your Email to reset the password",
+        username: "Please enter your email to reset the password",
       }));
-    } else {
-      navigate("/reset-password", { state: { email: username } });
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        "http://localhost:5000/api/users/forgetPassword",
+        {
+          email: username,
+        }
+      );
+
+      if (response.data.status === "success") {
+        toast.success("Password reset email sent!");
+        navigate("/verify-otp", {
+          state: { token: response.data.result.token },
+        });
+      }
+    } catch (error) {
+      setErrors({
+        general: error.response?.data?.message || "Failed to send reset email.",
+      });
+    } finally {
+      setLoading(false);
     }
   };
-
   const handleSignup = () => {
     navigate("/signup/account-details");
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const newErrors = {};
     if (!username && !password) {
       newErrors.general = "Username/Email and Password are required";
@@ -364,14 +397,28 @@ const Login = () => {
     setErrors(newErrors);
 
     if (!newErrors.general && !newErrors.username && !newErrors.password) {
-      if (username === "shahzad@gmail.com" && password === "1234") {
-        toast.success("Login successful!", {
-          autoClose: 3000,
-          className: "full-width-toast",
-          onClose: () => navigate("/dashboard"),
-        });
-      } else {
-        setErrors({ general: "Invalid email or password" });
+      setLoading(true);
+      setErrors({ general: "" });
+
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/api/users/login",
+          {
+            emailOrUsername: username,
+            password,
+          }
+        );
+
+        if (response.data.status === "success") {
+          toast.success("Login successful!", {
+            autoClose: 3000,
+            onClose: () => navigate("/dashboard"),
+          });
+        }
+      } catch (error) {
+        setErrors({ general: error.response?.data?.message || "Login failed" });
+      } finally {
+        setLoading(false);
       }
     }
   };

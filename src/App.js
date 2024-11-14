@@ -41,6 +41,7 @@ import EmailVerification from "./pages/EmailVerification"; // Page for Step 2
 import CreatePassword from "./pages/CreatePassword"; // Page for Step 3
 import Welcome from "./pages/Welcome"; // Page for Step 4
 import Dashboard from "./pages/Dashboard";
+import VerifyOTP from "./pages/VerifyOTP";
 
 const App = () => {
   return (
@@ -54,7 +55,8 @@ const App = () => {
         />{" "}
         <Route path="/signup/:email/:token" element={<EmailVerification />} />{" "}
         <Route path="/signup/create-password" element={<CreatePassword />} />{" "}
-        <Route path="/signup/welcome" element={<Welcome />} /> {/* Step 4 */}
+        <Route path="/signup/welcome" element={<Welcome />} />
+        <Route path="/verify-otp" element={<VerifyOTP />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>

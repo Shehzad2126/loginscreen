@@ -8,7 +8,6 @@ import TodayTask from "./TodayTask";
 import Proposals from "./Proposals";
 import CalendarComponent from "./CalendarComponent";
 
-// Styled components
 const DashboardContainer = styled.div`
   padding: 0.25rem 0.5rem 0rem;
   width: 98%;
