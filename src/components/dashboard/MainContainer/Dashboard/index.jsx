@@ -11,6 +11,10 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
+const DashboardParentContainer = styled.div`
+  background-color: rgba(248, 248, 248, 1);
+  padding: 10px;
+`;
 const DashboardContainer = styled.div`
   padding: 0.25rem 0.5rem 0rem;
   width: 98%;
@@ -160,86 +164,88 @@ const TaskDescription = styled.p`
 
 const Dashboard = () => {
   return (
-    <DashboardContainer>
-      {/* First main div: Title and Search Field */}
-      <HeaderSection>
-        <LeftHeadingDiv>
-          <Title>Dashboard</Title>
-        </LeftHeadingDiv>
-        <RightSearchDiv>
-          <SearchField />
-        </RightSearchDiv>
-      </HeaderSection>
+    <DashboardParentContainer>
+      <DashboardContainer>
+        {/* First main div: Title and Search Field */}
+        <HeaderSection>
+          <LeftHeadingDiv>
+            <Title>Dashboard</Title>
+          </LeftHeadingDiv>
+          <RightSearchDiv>
+            <SearchField />
+          </RightSearchDiv>
+        </HeaderSection>
 
-      {/* Second main div: Welcome Card and Calendar */}
-      <Section>
-        <LeftDiv>
-          <WelcomeCard>
-            <WelcomeCardTitle>Hello, Jack</WelcomeCardTitle>
-            <StatusRow>
-              <StatusText>7 new projects are waiting for you</StatusText>
-              <StatusText>Status</StatusText>
-            </StatusRow>
-            <ProgressBarContainer>
-              <ProgressBar>
-                <Progress />
-              </ProgressBar>
-              <StatusCount>120/127</StatusCount>
-            </ProgressBarContainer>
-          </WelcomeCard>
-        </LeftDiv>
-        <RightDiv>
-          <CalendarWrapper>
-            <CalendarComponent />
-          </CalendarWrapper>
-        </RightDiv>
-      </Section>
+        {/* Second main div: Welcome Card and Calendar */}
+        <Section>
+          <LeftDiv>
+            <WelcomeCard>
+              <WelcomeCardTitle>Hello, Jack</WelcomeCardTitle>
+              <StatusRow>
+                <StatusText>7 new projects are waiting for you</StatusText>
+                <StatusText>Status</StatusText>
+              </StatusRow>
+              <ProgressBarContainer>
+                <ProgressBar>
+                  <Progress />
+                </ProgressBar>
+                <StatusCount>120/127</StatusCount>
+              </ProgressBarContainer>
+            </WelcomeCard>
+          </LeftDiv>
+          <RightDiv>
+            <CalendarWrapper>
+              <CalendarComponent />
+            </CalendarWrapper>
+          </RightDiv>
+        </Section>
 
-      {/* Third main div: Stats, Activity, and Proposals */}
-      <Section>
-        <LeftDiv>
-          <StatCardsWrapper>
-            <StatCard
-              title="Today's Tasks"
-              value={15}
-              percentage={70}
-              icon={<FaTasks />}
-              color="rgba(16, 137, 143, 1)"
-            />
-            <StatCard
-              title="Total Projects"
-              value={127}
-              percentage={80}
-              icon={<FaProjectDiagram />}
-              color="rgba(199, 44, 136, 1)"
-            />
-            <StatCard
-              title="Total Earnings"
-              value="$12000"
-              percentage={60}
-              icon={<FaDollarSign />}
-              color="rgba(16, 137, 143, 1)"
-            />
-          </StatCardsWrapper>
-          <div style={{ paddingTop: "0.75rem" }}>
-            <Activity />
-            <Proposals />
-          </div>
-        </LeftDiv>
-        <RightDiv>
-          <RightSection>
-            <TaskTitle>Task Today</TaskTitle>
-            <TaskImage
-              src="https://s3-alpha-sig.figma.com/img/c646/cd8c/9e05cf0339e081b33cfa12c1b8e20492?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QW1uEJSIN77sAdYuFXV3j4mEQLIVKfEtDXKo3ozBnYP8zXEIfAxtn0kdVT37-womohDpma6SPdiW346mwMqmnXSUNw58fZ03ymde8eVDgEmSsi3kBWZtaY7BqeIrc2OsNkz-YmPEIolf-grET3eVL~XiERh6~GI6Bn9yfLK7SBOiJdujEbTIRpXnAd~yLBYjP-EolYgaQvYs0EApQNluNkhPXPQcsD2nQY~vdu7HyKZTP7GtUU9kV8ynOUziCgW1loAcemcqHtIxPam11jIOheNETARVpEC99pd8BLmHAyWCoEKd1ptYvpZ3gbnmYPMd-lsCkB3TIJ7c8I~U-eixDw__"
-              alt="Task"
-            />
-            <TaskHeading>IMPLEMENT Remote Work Policy</TaskHeading>
-            <TaskDescription>Workforce Planning Analyst</TaskDescription>
-            <TodayTask />
-          </RightSection>
-        </RightDiv>
-      </Section>
-    </DashboardContainer>
+        {/* Third main div: Stats, Activity, and Proposals */}
+        <Section>
+          <LeftDiv>
+            <StatCardsWrapper>
+              <StatCard
+                title="Today's Tasks"
+                value={15}
+                percentage={70}
+                icon={<FaTasks />}
+                color="rgba(16, 137, 143, 1)"
+              />
+              <StatCard
+                title="Total Projects"
+                value={127}
+                percentage={80}
+                icon={<FaProjectDiagram />}
+                color="rgba(199, 44, 136, 1)"
+              />
+              <StatCard
+                title="Total Earnings"
+                value="$12000"
+                percentage={60}
+                icon={<FaDollarSign />}
+                color="rgba(16, 137, 143, 1)"
+              />
+            </StatCardsWrapper>
+            <div style={{ paddingTop: "0.75rem" }}>
+              <Activity />
+              <Proposals />
+            </div>
+          </LeftDiv>
+          <RightDiv>
+            <RightSection>
+              <TaskTitle>Task Today</TaskTitle>
+              <TaskImage
+                src="https://s3-alpha-sig.figma.com/img/c646/cd8c/9e05cf0339e081b33cfa12c1b8e20492?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QW1uEJSIN77sAdYuFXV3j4mEQLIVKfEtDXKo3ozBnYP8zXEIfAxtn0kdVT37-womohDpma6SPdiW346mwMqmnXSUNw58fZ03ymde8eVDgEmSsi3kBWZtaY7BqeIrc2OsNkz-YmPEIolf-grET3eVL~XiERh6~GI6Bn9yfLK7SBOiJdujEbTIRpXnAd~yLBYjP-EolYgaQvYs0EApQNluNkhPXPQcsD2nQY~vdu7HyKZTP7GtUU9kV8ynOUziCgW1loAcemcqHtIxPam11jIOheNETARVpEC99pd8BLmHAyWCoEKd1ptYvpZ3gbnmYPMd-lsCkB3TIJ7c8I~U-eixDw__"
+                alt="Task"
+              />
+              <TaskHeading>IMPLEMENT Remote Work Policy</TaskHeading>
+              <TaskDescription>Workforce Planning Analyst</TaskDescription>
+              <TodayTask />
+            </RightSection>
+          </RightDiv>
+        </Section>
+      </DashboardContainer>
+    </DashboardParentContainer>
   );
 };
 

@@ -7,10 +7,10 @@ import {
   Navigate,
 } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
-import AccountDetails from "./pages/AccountDetails"; // Page for Step 1
-import EmailVerification from "./pages/EmailVerification"; // Page for Step 2
-import CreatePassword from "./pages/CreatePassword"; // Page for Step 3
-import Welcome from "./pages/Welcome"; // Page for Step 4
+import AccountDetails from "./pages/AccountDetails";
+import EmailVerification from "./pages/EmailVerification";
+import CreatePassword from "./pages/CreatePassword";
+import Welcome from "./pages/Welcome";
 import Dashboard from "./pages/Dashboard";
 import VerifyOTP from "./pages/VerifyOTP";
 

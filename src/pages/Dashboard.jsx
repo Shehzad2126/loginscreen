@@ -96,9 +96,7 @@ const Sidebar = styled.div`
 
 const Content = styled.div`
   width: ${(props) => (props.collapsed ? "95%" : "82%")};
-  transition: width 0.3s;
-  background-color: rgba(248, 248, 248, 1);
-  padding: 10px;
+  transition: width 0.2s;
 `;
 
 function Dashboard() {

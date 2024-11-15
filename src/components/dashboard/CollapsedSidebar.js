@@ -166,6 +166,7 @@ import CalendarIconActive from "../../Assets/CalenderIconActive.svg";
 import { BiHelpCircle } from "react-icons/bi";
 import MessageIcon from "../../Assets/MessageIcon.svg";
 import NotificationIcon from "../../Assets/NotificationIcon.svg";
+
 const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
