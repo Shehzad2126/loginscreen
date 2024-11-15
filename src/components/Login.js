@@ -16,7 +16,7 @@ import {
   InputAdornment,
   IconButton,
 } from "@mui/material";
-import GoogleIcon from "./GoogleIcon";
+import GoogleIcon from "../Assets/GoogleIcon.svg";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 const MainContainer = styled.div`
   display: flex;

@@ -5,7 +5,7 @@ import { Typography, TextField as MuiTextField, Button } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import GoogleIcon from "./GoogleIcon";
+import GoogleIcon from "../Assets/GoogleIcon.svg";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";

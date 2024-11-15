@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { TextField, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { FaUserAlt, FaEnvelope, FaLock, FaRocket } from "react-icons/fa";
-import GoogleIcon from "./GoogleIcon";
+import GoogleIcon from "../Assets/GoogleIcon.svg";
 import axios from "axios";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
