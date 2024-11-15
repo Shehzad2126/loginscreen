@@ -345,7 +345,11 @@ const EmailVerificationComponent = () => {
 
   const handleNext = async () => {
     try {
-      const token = new URLSearchParams(window.location.search).get("token");
+      const pathname = window.location.pathname;
+      const token = pathname.split("/").pop(); // Gets the last part of the path as the token
+      console.log("This is the token:", token);
+      // const token = new URLSearchParams(window.location.search).get("token");
+      // console.log("ths is token: ", token);
       const response = await axios.get(
         `http://localhost:5000/api/users/verifyEmail/${token}`
       );
