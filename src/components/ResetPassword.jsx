@@ -357,7 +357,7 @@ const ResetPassword = () => {
             <DividerText>OR</DividerText>
             <GoogleButton
               variant="outlined"
-              startIcon={<GoogleIcon style={{ color: "#4285F4" }} />}
+              startIcon={<img src={GoogleIcon} alt="Google Icon" />}
               fullWidth
             >
               Login with Gmail

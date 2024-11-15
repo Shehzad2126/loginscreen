@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Button, Typography } from "@mui/material";
+import { Button } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaUserAlt, FaEnvelope, FaLock, FaRocket } from "react-icons/fa";
 import axios from "axios";
