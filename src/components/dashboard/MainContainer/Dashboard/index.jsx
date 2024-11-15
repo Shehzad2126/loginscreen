@@ -166,7 +166,6 @@ const Dashboard = () => {
   return (
     <DashboardParentContainer>
       <DashboardContainer>
-        {/* First main div: Title and Search Field */}
         <HeaderSection>
           <LeftHeadingDiv>
             <Title>Dashboard</Title>

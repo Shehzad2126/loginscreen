@@ -140,10 +140,6 @@ const GoogleButton = styled(Button)`
   }
 `;
 
-// const GoogleIcon = styled(Google)`
-//   margin-right: 10px;
-// `;
-
 const Divider = styled.div`
   width: 100%;
   text-align: center;
@@ -360,14 +356,13 @@ const RightLogo = styled.div`
 `;
 const SignUpPageLink = styled.div`
   position: absolute;
-  top: 55px;
+  top: 0px;
   right: 20px;
   font-weight: bold;
   font-size: 0.795rem;
   text-decoration: underline;
   cursor: pointer;
   @media (max-width: 960px) {
-    top: 25px;
     right: 10px;
   }
 `;

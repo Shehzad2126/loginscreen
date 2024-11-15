@@ -288,14 +288,13 @@ const StyledTextField = styled(TextField)`
 `;
 const SignUpPageLink = styled.div`
   position: absolute;
-  top: 55px;
+  top: 0px;
   right: 20px;
   font-weight: bold;
   font-size: 0.795rem;
   text-decoration: underline;
   cursor: pointer;
   @media (max-width: 960px) {
-    top: 25px;
     right: 10px;
   }
 `;

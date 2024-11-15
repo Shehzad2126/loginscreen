@@ -153,7 +153,7 @@ const SubHeading = styled(Typography)`
 
 const SignUpPageLink = styled.div`
   position: absolute;
-  top: 55px;
+  top: 0px;
   right: 20px;
   font-weight: bold;
   font-size: 0.795rem;
@@ -161,7 +161,6 @@ const SignUpPageLink = styled.div`
   cursor: pointer;
   @media (max-width: 960px) {
     position: absolute;
-    top: 25px;
     right: 20px;
   }
   @media (min-width: 1282px) {

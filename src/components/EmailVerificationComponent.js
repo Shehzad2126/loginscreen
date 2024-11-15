@@ -264,14 +264,13 @@ const ParaHeadText = styled.div`
 `;
 const SignUpPageLink = styled.div`
   position: absolute;
-  top: 55px;
+  top: 0px;
   right: 20px;
   font-weight: bold;
   font-size: 0.795rem;
   text-decoration: underline;
   cursor: pointer;
   @media (max-width: 960px) {
-    top: 25px;
     right: 10px;
   }
 `;
@@ -295,8 +294,6 @@ const OverlayImage = styled.img`
 const EmailVerificationComponent = () => {
   const location = useLocation();
   const [email, setEmail] = useState("shahzadaliarain2126@gmail.com");
-  // const [isVerified, setIsVerified] = useState(false);
-  // const [resendStatus, setResendStatus] = useState(null);
   const navigate = useNavigate();
 
   const handleResendEmail = async () => {
@@ -322,38 +319,17 @@ const EmailVerificationComponent = () => {
 
   useEffect(() => {
     if (location.state && location.state.email) {
-      setEmail(location.state.email); // Use email from AccountDetailsComponent
+      setEmail(location.state.email);
     } else {
-      setEmail("shahzadaliarain2126@gmail.com"); // Default email if not provided
+      setEmail("shahzadaliarain2126@gmail.com");
     }
   }, [location.state]);
-
-  // const handleNext = async () => {
-  //   try {
-  //     const token = new URLSearchParams(window.location.search).get("token");
-  //     const response = await axios.get(
-  //       `http://localhost:5000/api/users/verifyEmail/${token}`
-  //     );
-
-  //     if (response.data.status === "success") {
-  //       alert("Email verified successfully!");
-  //       navigate("/signup/create-password");
-  //     } else {
-  //       alert("Email verification failed.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error verifying email:", error);
-  //     alert("There was an error verifying your email.");
-  //   }
-  // };
 
   const handleNext = async () => {
     try {
       const pathname = window.location.pathname;
-      const token = pathname.split("/").pop(); // Gets the last part of the path as the token
+      const token = pathname.split("/").pop();
       console.log("This is the token:", token);
-      // const token = new URLSearchParams(window.location.search).get("token");
-      // console.log("ths is token: ", token);
       const response = await axios.get(
         `http://localhost:5000/api/users/verifyEmail/${token}`
       );
