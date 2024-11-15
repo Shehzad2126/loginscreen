@@ -46,11 +46,15 @@
 import PropTypes from "prop-types";
 import { TbPencil } from "react-icons/tb";
 import styled from "styled-components";
-
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 // Styled components
 const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
+  font-family: Roboto;
   justify-content: space-between;
   padding: 0.5rem 1rem;
   background-color: white;

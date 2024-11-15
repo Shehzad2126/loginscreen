@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Button, Typography } from "@mui/material";
+import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { FaUserAlt, FaEnvelope, FaLock, FaRocket } from "react-icons/fa";
-
-// Styled Components
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 const SignupContainer = styled.div`
   display: flex;
   height: 94vh;
+  font-family: Roboto;
   flex-direction: row;
   padding: 3vh 1.5%;
   @media (max-width: 960px) {

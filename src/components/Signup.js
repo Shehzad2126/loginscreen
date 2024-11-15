@@ -7,12 +7,16 @@ import { InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { FaUserAlt, FaEnvelope, FaLock, FaRocket } from "react-icons/fa";
 import { TextField as MuiTextField, Button, Typography } from "@mui/material";
-
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 const SignupContainer = styled.div`
   display: flex;
   height: 94vh;
   flex-direction: column;
   justify-content: center;
+  font-family: Roboto;
   flex-direction: row;
   padding: 3vh 1.5%;
   @media (max-width: 960px) {

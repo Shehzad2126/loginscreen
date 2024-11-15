@@ -160,10 +160,14 @@
 // export default TodayTask;
 import { FaClock } from "react-icons/fa";
 import styled from "styled-components";
-
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 const Container = styled.div`
   width: 90%;
   padding: 1rem;
+  font-family: Roboto;
   background-color: white;
 `;
 

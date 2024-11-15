@@ -168,10 +168,14 @@
 // export default ActivityAndActiveNow;
 import ActivityChart from "./ActivityChart";
 import styled from "styled-components";
-
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 const Container = styled.div`
   display: flex;
   align-items: center;
+  font-family: Roboto;
 `;
 
 const ChartWrapper = styled.div`

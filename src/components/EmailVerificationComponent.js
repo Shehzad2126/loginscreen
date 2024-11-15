@@ -6,12 +6,16 @@ import { FaUserAlt, FaEnvelope, FaLock, FaRocket } from "react-icons/fa";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 const SignupContainer = styled.div`
   display: flex;
   height: 94vh;
   flex-direction: row;
   padding: 3vh 1.5%;
+  font-family: Roboto;
   @media (max-width: 960px) {
     flex-direction: column;
     padding: 10px 30px;

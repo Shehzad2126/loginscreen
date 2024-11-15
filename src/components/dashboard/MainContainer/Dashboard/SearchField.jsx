@@ -1,11 +1,15 @@
 import { FaSearch } from "react-icons/fa";
 import { BiBell, BiEnvelope } from "react-icons/bi";
 import styled from "styled-components";
-
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 // Styled components
 const Container = styled.div`
   display: flex;
   align-items: center;
+  font-family: Roboto;
   padding: 0.2rem 0; /* Equivalent to py-2 */
   // margin-left: 0.75rem; /* Equivalent to ml-3 */
   gap: 0.5rem; /* Equivalent to space-x-2 */

@@ -1,5 +1,8 @@
 import styled from "styled-components";
-
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 const proposals = [
   {
     id: 1,
@@ -23,6 +26,7 @@ const proposals = [
 
 const Container = styled.div`
   padding: 1rem;
+  font-family: Roboto;
 `;
 
 const Header = styled.div`

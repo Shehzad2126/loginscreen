@@ -5,12 +5,16 @@ import dayjs from "dayjs";
 import moment from "moment";
 import styled from "styled-components";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 // Styled component for the overlay calendar
 const CalendarOverlay = styled.div`
   position: absolute;
   top: 0;
   left: 50%;
+  font-family: Roboto;
   transform: translateX(-50%);
   z-index: 100;
   background: white;
@@ -22,6 +26,7 @@ const CalendarOverlay = styled.div`
 const WeekViewContainer = styled.div`
   position: relative;
   width: 90%;
+  font-family: Roboto;
   height: auto;
   padding: 1rem;
   background-color: white;

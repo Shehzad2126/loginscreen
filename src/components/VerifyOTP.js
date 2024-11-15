@@ -6,11 +6,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GoogleIcon from "./GoogleIcon";
-
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 const MainContainer = styled.div`
   display: flex;
   height: 94vh;
   flex-direction: row;
+  font-family: Roboto;
   padding: 3vh 1.5%;
   @media (max-width: 960px) {
     flex-direction: column;

@@ -8,6 +8,10 @@ import {
   InputAdornment,
   IconButton,
 } from "@mui/material";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaUserAlt, FaEnvelope, FaLock, FaRocket } from "react-icons/fa";
@@ -16,6 +20,7 @@ import { FaUserAlt, FaEnvelope, FaLock, FaRocket } from "react-icons/fa";
 const SignupContainer = styled.div`
   display: flex;
   height: 94vh;
+  font-family: Roboto;
   flex-direction: row;
   padding: 3vh 1.5%;
   @media (max-width: 960px) {

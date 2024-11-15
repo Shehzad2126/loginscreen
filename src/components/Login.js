@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 import {
   TextField as MuiTextField,
   Button,
@@ -17,6 +21,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 const MainContainer = styled.div`
   display: flex;
   height: 94vh;
+  font-family: Roboto;
   flex-direction: column;
   justify-content: center;
   flex-direction: row;

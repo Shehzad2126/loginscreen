@@ -7,11 +7,15 @@ import SearchField from "./SearchField";
 import TodayTask from "./TodayTask";
 import Proposals from "./Proposals";
 import CalendarComponent from "./CalendarComponent";
-
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 const DashboardContainer = styled.div`
   padding: 0.25rem 0.5rem 0rem;
   width: 98%;
   display: flex;
+  font-family: Roboto;
   flex-direction: column;
   gap: 1rem;
   @media (max-width: 960px) {

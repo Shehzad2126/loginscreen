@@ -195,7 +195,10 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 const data = [
   { name: "S", projects: 4, tasks: 1 },
   { name: "M", projects: 15, tasks: 10 },
@@ -211,6 +214,7 @@ const ChartContainer = styled.div`
   max-width: 100%;
   padding: 0px 10px;
   background-color: white;
+  font-family: Roboto;
   border: 1px solid #e5e7eb;
 `;
 
