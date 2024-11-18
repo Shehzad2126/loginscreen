@@ -16,7 +16,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, useLocation } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import GoogleIcon from "../Assets/GoogleIcon.svg";
+import GoogleIcon from "../../Assets/GoogleIcon.svg";
 
 const MainContainer = styled.div`
   display: flex;

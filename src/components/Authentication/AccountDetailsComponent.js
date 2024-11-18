@@ -1,179 +1,40 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { TextField, Button, Typography } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { FaUserAlt, FaEnvelope, FaLock, FaRocket } from "react-icons/fa";
-import GoogleIcon from "../Assets/GoogleIcon.svg";
+import GoogleIcon from "../../Assets/GoogleIcon.svg";
 import axios from "axios";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-const SignupContainer = styled.div`
-  display: flex;
-  height: 94vh;
-  font-family: Roboto;
-  flex-direction: row;
-  padding: 3vh 1.5%;
-  @media (max-width: 960px) {
-    flex-direction: column;
-    padding: 10px 30px;
-  }
-  @media (min-width: 1282px) {
-    padding: 3vh 3%;
-    height: 94vh;
-  }
-`;
-
-const FormOuterContainer = styled.div`
-  width: 65%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  @media (max-width: 1280px) {
-    width: 60%;
-  }
-  @media (max-width: 960px) {
-    width: 100%;
-  }
-`;
-
-const ContentContainer = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  height: 95vh;
-  border-radius: 10px;
-  overflow: hidden;
-  @media (max-width: 960px) {
-    flex-direction: column;
-    border-radius: 0;
-  }
-`;
-
-const FormSection = styled.div`
-  width: 50%;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  @media (max-width: 960px) {
-    width: 100%;
-    padding: 20px;
-  }
-  @media (max-width: 600px) {
-    padding: 15px;
-  }
-`;
-
-const FormContent = styled.div`
-  max-width: 400px;
-  text-align: center;
-  width: 100%;
-  @media (max-width: 600px) {
-    max-width: 100%;
-  }
-`;
-
-const Title = styled.h2`
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 5px;
-  @media (max-width: 600px) {
-    font-size: 20px;
-  }
-`;
-
-const Subtitle = styled.p`
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 10px;
-  @media (max-width: 600px) {
-    font-size: 12px;
-  }
-`;
-
-const ErrorText = styled.p`
-  color: red;
-  font-size: 14px;
-  text-align: left;
-  margin-bottom: 10px;
-`;
-
-const StyledTextField = styled(TextField)`
-  margin-bottom: 5px;
-  & .MuiInputBase-root {
-    height: 6vh;
-    padding: 0 10px;
-    @media (max-width: 960px) {
-      height: 5vh;
-    }
-    @media (max-width: 600px) {
-      height: 4.5vh;
-    }
-    @media (min-width: 1282px) {
-      height: 5vh;
-    }
-  }
-`;
-
-const GoogleButton = styled(Button)`
-  margin-top: 0px !important;
-  margin-bottom: 10px !important;
-  border: 1px solid #d9d9d9 !important;
-  color: #555 !important;
-  border-radius: 5px !important;
-  height: 6vh;
-  font-size: 16px;
-  @media (max-width: 960px) {
-    height: 5vh;
-    font-size: 14px;
-  }
-  @media (max-width: 600px) {
-    height: 4.5vh;
-    font-size: 12px;
-  }
-`;
-
-const Divider = styled.div`
-  width: 100%;
-  text-align: center;
-  margin: 10px 0;
-  font-size: 14px;
-  color: #666;
-  position: relative;
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 40%;
-    height: 1px;
-    background-color: #ddd;
-  }
-
-  &::before {
-    left: 0;
-  }
-
-  &::after {
-    right: 0;
-  }
-
-  span {
-    position: relative;
-    z-index: 1;
-    padding: 0 10px;
-    background-color: white;
-  }
-`;
-
+import {
+  SignupContainer,
+  ContentContainer,
+  FormOuterContainer,
+  FormSection,
+  FormContent,
+  Title,
+  Subtitle,
+  ErrorText,
+  FieldContainer,
+  Divider,
+  StyledTextField,
+  Logo,
+  ProgressBar,
+  IndicatorSection,
+  IndicatorHeader,
+  TextSpan,
+  ParaText,
+  ParaHeadText,
+  RightLogo,
+  SignUpPageLink,
+  UsernameFieldName,
+  OverlayImage,
+  LoginwithGoogleText,
+  GoogleButton,
+} from "./AuthenticationStyles";
 const NextButton = styled(Button)`
   width: 100%;
   padding: 12px;
@@ -188,52 +49,12 @@ const NextButton = styled(Button)`
   }
 `;
 
-const ProgressBar = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 25%;
-  position: absolute;
-  bottom: 5vh;
-  left: 12%;
-  padding: 0 20px;
-  @media (min-width: 1281px) {
-    left: 16%;
-  }
-  @media (max-width: 600px) {
-    width: 70%;
-  }
-`;
-
 const Step = styled.span`
   width: 20%;
   height: 4px;
   background: ${(props) => (props.isCurrentStep ? "#008080" : "#ddd")};
   border-radius: 2px;
   transition: background 0.3s;
-`;
-
-const IndicatorSection = styled.div`
-  width: 50%;
-  padding: 40px;
-  display: flex;
-  height: 90vh;
-  flex-direction: column;
-  background-color: #f7f7f7;
-  align-items: flex-end;
-  position: relative;
-  border-radius: 10px;
-  @media (max-width: 960px) {
-    display: none;
-  }
-`;
-
-const IndicatorHeader = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 20px;
-  font-weight: bold;
-  color: #008080;
-  margin-bottom: 30px;
 `;
 
 const IndicatorItem = styled.div`
@@ -264,20 +85,15 @@ const IndicatorItem = styled.div`
     }
   }
 
-  @media (max-width: 600px) {
-    font-size: 14px;
-    margin-bottom: 15px;
-    &:not(:last-of-type)::after {
-      bottom: -15px;
-      height: 20px;
-    }
-  }
-`;
-const LoginwithGoogleText = styled.div`
-  font-weight: 600 !important;
-  font-family: "Roboto", sans-serif;
-  padding: 0px;
-  margin: 0px;
+  //   @media (max-width: 600px) {
+  //     font-size: 14px;
+  //     margin-bottom: 15px;
+  //     &:not(:last-of-type)::after {
+  //       bottom: -15px;
+  //       height: 20px;
+  //     }
+  //   }
+  //
 `;
 const IconWrapper = styled.div`
   margin-left: 10px;
@@ -290,81 +106,6 @@ const IconWrapper = styled.div`
   border: 1px solid ${(props) => (props.active ? "#008080" : "#ccc")};
   color: ${(props) => (props.active ? "#008080" : "#ccc")};
   border-radius: 10%;
-`;
-
-const TextSpan = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: right;
-`;
-
-const ParaText = styled.div`
-  font-size: 8px;
-  font-weight: 400;
-`;
-
-const ParaHeadText = styled.div`
-  font-size: 12px;
-  font-weight: 600;
-`;
-
-const FieldContainer = styled.div`
-  margin-bottom: 10px;
-  width: 100%;
-`;
-
-const UsernameFieldName = styled.div`
-  font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  text-align: left;
-  font-weight: 400;
-  margin-bottom: 2px;
-  color: black;
-`;
-const Logo = styled.div`
-  margin-bottom: 10px;
-  img {
-    width: 40px;
-    @media (max-width: 600px) {
-      width: 35px;
-    }
-  }
-`;
-const OverlayImage = styled.img`
-  position: absolute;
-  filter: brightness(200%);
-  width: 50%;
-  height: auto;
-  opacity: 0.5;
-  top: 46%;
-  left: 0%;
-  transform: rotate(-30deg);
-  @media (max-width: 600px) {
-    width: 70%;
-    top: 40%;
-    left: 15%;
-  }
-`;
-const RightLogo = styled.div`
-  margin-bottom: 10px;
-  img {
-    width: 60px;
-    @media (max-width: 600px) {
-      width: 50px;
-    }
-  }
-`;
-const SignUpPageLink = styled.div`
-  position: absolute;
-  top: 0px;
-  right: 20px;
-  font-weight: bold;
-  font-size: 0.795rem;
-  text-decoration: underline;
-  cursor: pointer;
-  @media (max-width: 960px) {
-    right: 10px;
-  }
 `;
 
 const AccountDetailsComponent = () => {

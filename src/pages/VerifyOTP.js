@@ -1,5 +1,5 @@
 import React from "react";
-import VerifyOtp from "../components/VerifyOTP";
+import VerifyOtp from "../components/Authentication/VerifyOTP";
 
 function VerifyOTP() {
   return (
