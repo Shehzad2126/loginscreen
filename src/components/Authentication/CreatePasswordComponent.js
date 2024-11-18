@@ -7,7 +7,7 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { FaUserAlt, FaEnvelope, FaLock, FaRocket } from "react-icons/fa";
 
 // Styled Components
@@ -312,13 +312,14 @@ const CreatePasswordComponent = () => {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({
     password: "",
     confirmPassword: "",
   });
-
+  // const [token, setToken] = useState( || "");
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState("");
   const handleFieldChange = (field, value) => {
@@ -364,8 +365,7 @@ const CreatePasswordComponent = () => {
       setLoading(true);
       setApiError("");
       try {
-        const token =
-          "47daa7e93507c7ef5269e3fd67fda60487ed13812d92baefef06979f99aae55d"; // Replace with dynamic token
+        const token = location.state?.token;
         const response = await axios.post(
           "http://localhost:5000/api/users/setPassword",
           {

@@ -17,7 +17,9 @@ import CalendarIcon from "../../Assets/CalenderIcon.svg";
 import CalendarIconActive from "../../Assets/CalenderIconActive.svg";
 import { BsGraphUpArrow } from "react-icons/bs";
 import MessageIcon from "../../Assets/MessageIcon.svg";
+import { logout } from "../../store/authSlice";
 import NotificationIcon from "../../Assets/NotificationIcon.svg";
+import { useNavigate } from "react-router-dom";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -135,7 +137,11 @@ const UserEmail = styled.p`
 const LeftSidebar = () => {
   const dispatch = useDispatch();
   const activeTab = useSelector((state) => state.tab.activeTab);
-
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(logout()); // Clear auth state
+    navigate("/login");
+  };
   // Define tabs with icons as functions
   const tabs = [
     {
@@ -223,6 +229,7 @@ const LeftSidebar = () => {
         </IconContainer>
         <UserProfile>
           <UserImage
+            onClick={handleLogout}
             src="https://avatar.iran.liara.run/public/boy"
             alt="User"
           />

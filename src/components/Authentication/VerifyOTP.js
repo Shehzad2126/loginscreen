@@ -9,6 +9,7 @@ import GoogleIcon from "../../Assets/GoogleIcon.svg";
 import Centrix_Logo from "../../Assets/Centrix_Logo.svg";
 import OverlayImag from "../../Assets/OverlayImage.svg";
 import Background from "../../Assets/Background.svg";
+
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -183,8 +184,7 @@ const VerifyOtp = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const loginEmail = location.state?.email || "shahzadaliarain2126@gmail.com";
-  const initialToken = location.state?.token || ""; // Token received for OTP verification
-
+  const [token, setToken] = useState(location.state?.token || "");
   const handleOTPChange = (element, index) => {
     const value = element.value.replace(/[^0-9]/g, "");
     if (value.length > 1) return;
@@ -196,23 +196,64 @@ const VerifyOtp = () => {
     if (value && index < otp.length - 1) {
       document.getElementById(`otp-input-${index + 1}`).focus();
     }
+    if (!value && index > 0) {
+      document.getElementById(`otp-input-${index - 1}`).focus();
+    }
   };
 
+  // const handleContinueOtp = async () => {
+  //   const enteredOtp = otp.join("");
+  //   if (!enteredOtp) {
+  //     setErrors({ otp: "OTP is required" });
+  //     return;
+  //   }
+
+  //   try {
+  //     console.log(token);
+  //     console.log(enteredOtp);
+  //     const response = await axios.post(
+  //       "http://localhost:5000/api/users/verifyOtp",
+  //       {
+  //         token,
+  //         enteredOtp,
+  //       }
+  //     );
+
+  //     if (response.data.status === "success") {
+  //       toast.success("OTP verified successfully!");
+  //       navigate("/reset-password", {
+  //         state: { token: response.data.result.token },
+  //       });
+  //     } else {
+  //       toast.error("OTP verification failed. Please try again.");
+  //     }
+  //   } catch (error) {
+  //     toast.error("OTP verification failed. Please try again.");
+  //     setErrors({
+  //       otp: error.response?.data?.message || "OTP verification failed",
+  //     });
+  //   }
+  // };
   const handleContinueOtp = async () => {
-    const enteredOtp = otp.join("");
+    const enteredOtp = otp.join(""); // Combine OTP digits into a single string
     if (!enteredOtp) {
       setErrors({ otp: "OTP is required" });
       return;
     }
 
     try {
+      console.log("Token being sent:", token);
+      console.log("Entered OTP:", enteredOtp);
+
       const response = await axios.post(
         "http://localhost:5000/api/users/verifyOtp",
         {
-          email: loginEmail,
-          otp: enteredOtp,
+          token,
+          otp: enteredOtp, // Ensure key and value match API expectations
         }
       );
+
+      console.log("API Response:", response.data);
 
       if (response.data.status === "success") {
         toast.success("OTP verified successfully!");
@@ -223,12 +264,17 @@ const VerifyOtp = () => {
         toast.error("OTP verification failed. Please try again.");
       }
     } catch (error) {
+      console.error("Error during OTP verification:", error.response?.data);
+      toast.error("OTP verification failed. Please try again.");
       setErrors({
         otp: error.response?.data?.message || "OTP verification failed",
       });
     }
   };
+
   const handleResendOtp = async () => {
+    setOtp(["", "", "", "", ""]);
+    setErrors("");
     try {
       const response = await axios.post(
         "http://localhost:5000/api/users/resendOtp",
@@ -236,7 +282,10 @@ const VerifyOtp = () => {
       );
 
       if (response.data.status === "success") {
+        const updatedToken = response.data.result.token;
+        console.log(updatedToken);
         toast.success("OTP sent again. Please check your email.");
+        setToken(updatedToken);
       } else {
         toast.error("Failed to resend OTP. Please try again.");
       }

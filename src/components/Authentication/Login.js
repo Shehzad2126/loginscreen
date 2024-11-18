@@ -338,9 +338,10 @@ const Login = () => {
       );
 
       if (response.data.status === "success") {
+        const token = response.data.result.token;
         toast.success("Password reset email sent!");
         navigate("/verify-otp", {
-          state: { token: response.data.result.token },
+          state: { token }, // Pass the token as state
         });
       }
     } catch (error) {

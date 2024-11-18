@@ -276,7 +276,7 @@ const WelcomeComponent = () => {
 
   const handleNext = () => {
     // Navigate to next step
-    navigate("/signup/welcome");
+    navigate("/dashboard");
   };
   const handleLogin = () => {
     navigate("/login");
