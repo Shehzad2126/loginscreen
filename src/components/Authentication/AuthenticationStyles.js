@@ -149,7 +149,6 @@ export const UsernameFieldName = styled.div`
   font-weight: 400 !important;
   display: flex;
   text-align: left;
-  margin-bottom: 2px;
   color: black;
 `;
 
@@ -176,7 +175,7 @@ export const LoginwithGoogleText = styled.div`
 `;
 
 export const StyledTextField = styled(TextField)`
-  margin-bottom: 16px;
+  margin-bottom: 0px !important;
   & .MuiInputBase-root {
     height: 6vh;
     padding: 0 10px;
@@ -209,7 +208,7 @@ export const StyledButton = styled(Button)`
 `;
 
 export const GoogleButton = styled(Button)`
-  margin-top: 0px !important;
+  margin-bottom: 10px !important;
   border: 1px solid #d9d9d9 !important;
   color: #555 !important;
   border-radius: 8px !important;

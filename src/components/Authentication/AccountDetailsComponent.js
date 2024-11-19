@@ -39,6 +39,7 @@ const NextButton = styled(Button)`
   width: 100%;
   padding: 12px;
   background-color: #008080 !important;
+  margin-top: 8px !inportant;
   color: #ffffff !important;
   border-radius: 5px !important;
   font-size: 16px !important;
@@ -85,15 +86,14 @@ const IndicatorItem = styled.div`
     }
   }
 
-  //   @media (max-width: 600px) {
-  //     font-size: 14px;
-  //     margin-bottom: 15px;
-  //     &:not(:last-of-type)::after {
-  //       bottom: -15px;
-  //       height: 20px;
-  //     }
-  //   }
-  //
+  @media (max-width: 600px) {
+    font-size: 14px;
+    margin-bottom: 15px;
+    &:not(:last-of-type)::after {
+      bottom: -15px;
+      height: 20px;
+    }
+  }
 `;
 const IconWrapper = styled.div`
   margin-left: 10px;
@@ -264,10 +264,7 @@ const AccountDetailsComponent = () => {
               >
                 <LoginwithGoogleText>Login with Gmail</LoginwithGoogleText>
               </GoogleButton>
-              {/* <GoogleButton>
-                <GoogleIcon />
-                Sign up with Google
-              </GoogleButton> */}
+
               <NextButton onClick={handleNext}>Continue</NextButton>
             </FormContent>
           </FormSection>
