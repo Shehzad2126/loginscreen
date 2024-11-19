@@ -22,7 +22,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   activeTab: "Dashboard", // Default tab
-  isCollapsed: true, // Sidebar starts collapsed
+  isCollapsed: false, // Sidebar starts collapsed
 };
 
 const tabSlice = createSlice({

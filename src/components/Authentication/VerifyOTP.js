@@ -235,7 +235,7 @@ const VerifyOtp = () => {
   //   }
   // };
   const handleContinueOtp = async () => {
-    const enteredOtp = otp.join(""); // Combine OTP digits into a single string
+    const enteredOtp = Number(otp.join("")); // Combine OTP digits into a single string
     if (!enteredOtp) {
       setErrors({ otp: "OTP is required" });
       return;
@@ -243,19 +243,23 @@ const VerifyOtp = () => {
 
     try {
       console.log("Token being sent:", token);
-      console.log("Entered OTP:", enteredOtp);
+      console.log("Type of Entered OTP:", typeof enteredOtp);
 
       const response = await axios.post(
         "http://localhost:5000/api/users/verifyOtp",
         {
           token,
-          otp: enteredOtp, // Ensure key and value match API expectations
+          otp: enteredOtp,
         }
       );
 
       console.log("API Response:", response.data);
 
       if (response.data.status === "success") {
+        console.log(
+          "Type of token which is being sent to next page",
+          typeof response.data.result.token
+        );
         toast.success("OTP verified successfully!");
         navigate("/reset-password", {
           state: { token: response.data.result.token },

@@ -258,7 +258,8 @@ const ResetPassword = () => {
     if (!validatePassword()) return;
 
     try {
-      await axios.post("http://localhost:5000/api/users/resetPassword", {
+      console.log(resetToken);
+      await axios.post("http://localhost:5000/api/users/setPassword", {
         token: resetToken,
         password: newPassword,
         isResetPassword: true,
